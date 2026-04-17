@@ -68,8 +68,16 @@ function DashboardIcon() {
   );
 }
 
+function BrainIcon() {
+  return (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+    </svg>
+  );
+}
+
 /* ------------------------------------------------------------------ */
-/*  Dashboard Mockup Component                                         */
+/*  Dashboard Mockup Component (preserved, not rendered)               */
 /* ------------------------------------------------------------------ */
 function DashboardMockup() {
   return (
@@ -141,59 +149,65 @@ function DashboardMockup() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Pillars                                                            */
-/* ------------------------------------------------------------------ */
-const pillars = [
-  { title: 'CUSTOM SOFTWARE', desc: 'Purpose-built business apps designed around how your company actually operates — not forced into a template.', icon: <GearIcon /> },
-  { title: 'WORKFLOW AUTOMATION', desc: 'Replace manual steps, spreadsheets, and disconnected tools with systems that move work forward automatically.', icon: <PuzzleIcon /> },
-  { title: 'AI INTEGRATION', desc: 'Smart lead scoring, draft responses, data extraction, routing suggestions, and workflow recommendations powered by AI.', icon: <ChartIcon /> },
-  { title: 'CONSULTING & STRATEGY', desc: 'We design the right system first, then build it. Consulting-led implementation that solves real operational problems.', icon: <RocketIcon /> },
-];
-
-/* ------------------------------------------------------------------ */
-/*  Solutions                                                          */
+/*  Solutions data                                                     */
 /* ------------------------------------------------------------------ */
 const solutions = [
   {
-    title: 'Lead Response & CRM',
-    desc: 'Capture, qualify, score, and route leads automatically. AI-powered follow-up and intake forms that never let a prospect slip through.',
+    title: 'Lead Response & Automation',
+    desc: 'Capture, qualify, score, and route leads the moment they come in. AI-powered follow-up sequences and smart intake forms that never let a prospect slip through the cracks.',
+    bullets: ['Instant lead capture & routing', 'AI-drafted follow-up emails', 'Smart scoring & prioritization', 'CRM integration'],
     icon: <InboxIcon />,
   },
   {
-    title: 'Workflow & Operations Apps',
-    desc: 'Replace spreadsheets and manual tracking with custom workflow systems. Tasks, approvals, status boards, and automated handoffs.',
+    title: 'Workflow & Operations',
+    desc: 'Replace spreadsheets and manual tracking with custom workflow systems built around how your team actually works. Tasks, approvals, status boards, and automated handoffs.',
+    bullets: ['Custom task management', 'Automated approval chains', 'Real-time status boards', 'Team notification flows'],
     icon: <WorkflowIcon />,
   },
   {
-    title: 'Scheduling, Intake & Booking',
-    desc: 'Client-facing booking pages, custom intake forms, automated reminders, and calendar management — all branded to your business.',
+    title: 'Scheduling & Intake',
+    desc: 'Client-facing booking pages, custom intake forms, automated reminders, and calendar management. All branded to your business, all connected to your systems.',
+    bullets: ['Branded booking pages', 'Custom intake forms', 'Automated reminders & confirmations', 'Calendar sync'],
     icon: <CalendarIcon />,
   },
   {
     title: 'Dashboards & Reporting',
-    desc: 'Real-time KPIs, operational dashboards, and reporting platforms that give owners and managers actual visibility into what matters.',
+    desc: 'Real-time KPIs, operational dashboards, and reporting platforms that give owners and managers actual visibility into what matters instead of another spreadsheet.',
+    bullets: ['Real-time KPI tracking', 'Custom report builders', 'Team performance views', 'Executive summaries'],
     icon: <DashboardIcon />,
+  },
+  {
+    title: 'AI Integration & Consulting',
+    desc: 'Strategic AI integration that actually makes sense for your business. Not chatbot gimmicks -- real AI that drafts proposals, extracts data, routes work, and saves hours.',
+    bullets: ['Document & data extraction', 'AI-drafted communications', 'Intelligent routing & triage', 'Workflow recommendations'],
+    icon: <BrainIcon />,
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Industries                                                         */
+/*  Portfolio data                                                     */
 /* ------------------------------------------------------------------ */
-const industries = [
-  'Any Business With Manual Workflows',
-  'Multi-Business Owners & Executives',
-  'Service Companies',
-  'Contractors & Field Teams',
-  'Professional Services & Consulting',
-  'Healthcare & Clinics',
-  'Real Estate & Property Management',
-  'HVAC, Electrical & Plumbing',
-  'AV Integration & Technology',
-  'Construction & Trades',
-  'Appointment-Based Businesses',
-  'Logistics & Distribution',
-  'Retail & E-Commerce Operations',
-  'Agencies & Creative Studios',
+const portfolio = [
+  {
+    name: 'AgentPilot',
+    desc: 'AI-powered lead automation and client engagement platform for service businesses.',
+    tag: 'Lead Automation',
+  },
+  {
+    name: 'DFO',
+    desc: 'Field operations management with JSA reports, issue tracking, and crew coordination.',
+    tag: 'Field Ops',
+  },
+  {
+    name: 'AV Orchestrator',
+    desc: 'Enterprise AV system management with room control, device monitoring, and presentations.',
+    tag: 'Enterprise AV',
+  },
+  {
+    name: 'DSD',
+    desc: 'Digital signage content operations platform for enterprise display networks.',
+    tag: 'Digital Signage',
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -203,215 +217,372 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-bad-bg text-bad-light">
       {/* ── Nav ──────────────────────────────────────────────────── */}
-      <nav className="sticky top-0 z-50 bg-black border-b border-bad-border">
+      <nav className="sticky top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-bad-border">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-          <div className="flex items-center gap-10">
-            <img src="/bad-logo.png" alt="BAD" className="h-8" />
-            <div className="hidden md:flex items-center gap-6">
-              {['Solutions', 'Modules', 'Industries', 'About', 'Contact'].map((l) => (
-                <a
-                  key={l}
-                  href={`#${l.toLowerCase()}`}
-                  className="text-sm text-bad-gray hover:text-bad-light transition-colors"
-                >
-                  {l}
-                </a>
-              ))}
-            </div>
+          <img src="/bad-logo.png" alt="BAD" className="h-8" />
+          <div className="hidden md:flex items-center gap-8">
+            {['Solutions', 'How We Work', 'Portfolio', 'About', 'Contact'].map((l) => (
+              <a
+                key={l}
+                href={`#${l.toLowerCase().replace(/\s+/g, '-')}`}
+                className="text-sm text-bad-gray hover:text-bad-light transition-colors"
+              >
+                {l}
+              </a>
+            ))}
           </div>
-          <Link
-            href="/signup"
+          <a
+            href="#contact"
             className="px-5 py-2 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-colors"
           >
-            Get Started
-          </Link>
+            Book a Call
+          </a>
         </div>
       </nav>
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-6 pt-20 pb-24 lg:pt-28 lg:pb-32">
-        <div className="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">
+      <section className="max-w-7xl mx-auto px-6 pt-24 pb-20 lg:pt-32 lg:pb-28">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
           {/* Left */}
           <div className="flex-1 text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
-              Custom Business Apps.
-              <br />
-              Smarter Workflows.
-              <br />
-              <span className="text-bad-blue">Real Results.</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-bad-blue/10 border border-bad-blue/20 mb-8">
+              <span className="w-2 h-2 rounded-full bg-bad-blue animate-pulse" />
+              <span className="text-xs font-medium text-bad-blue tracking-wide">Business Automation & AI Consulting</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight">
+              We Build the Systems{' '}
+              <span className="bg-gradient-to-r from-bad-blue to-blue-400 bg-clip-text text-transparent">
+                Your Business
+              </span>{' '}
+              Actually Needs
             </h1>
-            <p className="mt-6 text-lg text-bad-gray max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              BAD is a business automation, custom software, AI integration, and
-              consulting company. We design and build the systems your business
-              actually needs — not more generic tools you have to force-fit.
+            <p className="mt-7 text-lg lg:text-xl text-bad-gray max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              Custom software, workflow automation, AI integration, and consulting for businesses tired of duct-taping spreadsheets and disconnected tools together.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4">
-              <a
-                href="#solutions"
-                className="px-7 py-3 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-colors shadow-lg shadow-bad-blue/20"
-              >
-                Explore Solutions
-              </a>
+            <div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4">
               <a
                 href="#contact"
-                className="px-7 py-3 text-sm font-semibold border border-bad-border text-bad-light hover:bg-bad-card rounded-lg transition-colors"
+                className="px-8 py-3.5 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-all shadow-lg shadow-bad-blue/25 hover:shadow-bad-blue/40"
               >
                 Book a Discovery Call
               </a>
+              <a
+                href="#portfolio"
+                className="px-8 py-3.5 text-sm font-semibold border border-bad-border text-bad-light hover:border-bad-blue/40 hover:bg-bad-card rounded-lg transition-colors"
+              >
+                See Our Work
+              </a>
             </div>
+            <p className="mt-8 text-sm text-bad-gray/70">
+              Trusted by teams in AV, construction, field services, and more
+            </p>
           </div>
 
-          {/* Right — Brand visual */}
-          <div className="flex-shrink-0 w-full max-w-md lg:max-w-lg flex justify-center">
-            <div className="relative w-full rounded-2xl overflow-hidden border border-bad-border shadow-2xl shadow-bad-blue/10">
+          {/* Right -- 3D tilted browser frame */}
+          <div className="flex-shrink-0 w-full max-w-md lg:max-w-lg flex justify-center" style={{ perspective: '1200px' }}>
+            <div
+              className="relative w-full rounded-2xl overflow-hidden border border-bad-border shadow-2xl shadow-bad-blue/15"
+              style={{ transform: 'rotateY(-8deg) rotateX(4deg)' }}
+            >
+              {/* Browser chrome bar */}
+              <div className="flex items-center gap-2 px-4 py-2.5 bg-bad-card border-b border-bad-border">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+                <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
+                <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+                <div className="ml-3 flex-1 h-5 rounded bg-bad-bg/60 flex items-center px-3">
+                  <span className="text-[10px] text-bad-gray/50">badsaas.app</span>
+                </div>
+              </div>
               <img src="/bad-brand-hero.png" alt="BAD Platform" className="w-full h-auto" />
-              <div className="absolute inset-0 bg-gradient-to-t from-bad-bg/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 top-8 bg-gradient-to-t from-bad-bg/40 via-transparent to-transparent" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── What BAD Delivers ────────────────────────────────────── */}
-      <section className="bg-bad-card/40 border-y border-bad-border">
-        <div className="max-w-7xl mx-auto px-6 py-20">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14 tracking-tight">
-            What We Build
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {pillars.map((p) => (
-              <div key={p.title} className="text-center">
-                <div className="w-14 h-14 mx-auto flex items-center justify-center rounded-xl bg-bad-blue/10 text-bad-blue mb-4">
-                  {p.icon}
-                </div>
-                <h3 className="text-sm font-bold tracking-widest text-bad-light mb-2">
-                  {p.title}
-                </h3>
-                <p className="text-sm text-bad-gray leading-relaxed">{p.desc}</p>
+      {/* ── Metrics Bar ──────────────────────────────────────────── */}
+      <section className="border-y border-bad-border bg-bad-card/50">
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {[
+              { value: '12+', label: 'Custom Platforms Built' },
+              { value: '50k+', label: 'Lines of Production Code' },
+              { value: '6', label: 'Industries Served' },
+              { value: 'AI', label: 'Powered Workflows' },
+            ].map((m) => (
+              <div key={m.label} className="text-center">
+                <p className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-bad-blue to-blue-400 bg-clip-text text-transparent">
+                  {m.value}
+                </p>
+                <p className="text-sm text-bad-gray mt-1">{m.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Solutions ────────────────────────────────────────────── */}
-      <section id="solutions" className="max-w-7xl mx-auto px-6 py-20">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 tracking-tight">
-          Solutions
-        </h2>
-        <p className="text-bad-gray text-center mb-14 max-w-2xl mx-auto">
-          From lead capture to reporting, we build the systems that replace manual work, disconnected tools, and operational friction.
-        </p>
-        <div className="grid sm:grid-cols-2 gap-6">
-          {solutions.map((s) => (
+      {/* ── The Problem ──────────────────────────────────────────── */}
+      <section className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+            Your Business Runs on Manual Work.{' '}
+            <span className="bg-gradient-to-r from-bad-blue to-blue-400 bg-clip-text text-transparent">
+              It Doesn&apos;t Have To.
+            </span>
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {[
+            {
+              emoji: '01',
+              title: 'Leads fall through the cracks',
+              desc: 'No follow-up system. No lead scoring. Prospects go cold because nobody got back to them in time.',
+            },
+            {
+              emoji: '02',
+              title: 'Your team tracks everything in spreadsheets',
+              desc: 'No real-time visibility. No accountability. Status updates require a meeting or a phone call.',
+            },
+            {
+              emoji: '03',
+              title: "You're paying for 6 tools that don't talk to each other",
+              desc: 'Data lives in silos. Manual copy-paste between systems. No single source of truth.',
+            },
+          ].map((pain) => (
             <div
-              key={s.title}
-              className="p-7 rounded-xl bg-bad-card border border-bad-border hover:border-bad-blue/40 transition-colors group"
+              key={pain.title}
+              className="p-8 rounded-2xl bg-bad-card border border-bad-border hover:border-bad-blue/30 transition-all group"
+              style={{ boxShadow: '0 0 40px rgba(37, 99, 235, 0.03)' }}
             >
-              <div className="w-11 h-11 flex items-center justify-center rounded-lg bg-bad-blue/10 text-bad-blue mb-4 group-hover:bg-bad-blue/20 transition-colors">
-                {s.icon}
+              <span className="inline-block text-sm font-bold text-bad-blue/60 mb-4">{pain.emoji}</span>
+              <h3 className="text-lg font-semibold text-bad-light mb-3">{pain.title}</h3>
+              <p className="text-sm text-bad-gray leading-relaxed">{pain.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-14 text-center">
+          <p className="text-xl lg:text-2xl font-semibold text-bad-light">
+            BAD fixes this. We design and build <span className="text-bad-blue">the system</span> -- not just another tool.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Solutions ────────────────────────────────────────────── */}
+      <section id="solutions" className="bg-bad-card/30 border-y border-bad-border">
+        <div className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
+          <div className="max-w-3xl mx-auto text-center mb-20">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5">
+              What We Build
+            </h2>
+            <p className="text-lg text-bad-gray">
+              From lead capture to AI integration, we build complete systems that replace manual work and disconnected tools.
+            </p>
+          </div>
+
+          <div className="space-y-20 lg:space-y-28">
+            {solutions.map((s, i) => (
+              <div
+                key={s.title}
+                className={`flex flex-col gap-10 lg:gap-16 items-center ${
+                  i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                }`}
+              >
+                {/* Text side */}
+                <div className="flex-1">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-bad-blue/10 text-bad-blue mb-6">
+                    {s.icon}
+                  </div>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-bad-light mb-4">{s.title}</h3>
+                  <p className="text-bad-gray leading-relaxed mb-6">{s.desc}</p>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-center gap-2.5 text-sm text-bad-light/80">
+                        <svg className="w-4 h-4 text-bad-blue flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* Visual side */}
+                <div className="flex-1 w-full max-w-md">
+                  <div
+                    className="w-full aspect-[4/3] rounded-2xl bg-bad-card border border-bad-border flex items-center justify-center"
+                    style={{ boxShadow: '0 0 60px rgba(37, 99, 235, 0.06)' }}
+                  >
+                    <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-bad-blue/10 text-bad-blue scale-150">
+                      {s.icon}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-lg font-semibold text-bad-light mb-2">{s.title}</h3>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── How We Work ──────────────────────────────────────────── */}
+      <section id="how-we-work" className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5">
+            How We Work
+          </h2>
+          <p className="text-lg text-bad-gray">
+            A consulting-led process that starts with understanding your business, not selling you software.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          {[
+            {
+              step: '01',
+              title: 'Discovery',
+              desc: 'We audit your current workflows, tools, and pain points. No generic sales pitch. We learn how your business actually runs before proposing anything.',
+            },
+            {
+              step: '02',
+              title: 'Design & Build',
+              desc: 'We architect and build custom systems around how your business actually operates. Every feature exists because your workflow needs it.',
+            },
+            {
+              step: '03',
+              title: 'Launch & Support',
+              desc: 'We deploy, train your team, and provide ongoing optimization. Your system evolves as your business grows.',
+            },
+          ].map((s) => (
+            <div key={s.step} className="relative p-8 rounded-2xl bg-bad-card border border-bad-border hover:border-bad-blue/30 transition-all group">
+              <div className="w-14 h-14 flex items-center justify-center rounded-full bg-bad-blue/10 border-2 border-bad-blue/30 mb-6">
+                <span className="text-lg font-bold text-bad-blue">{s.step}</span>
+              </div>
+              <h3 className="text-xl font-bold text-bad-light mb-3">{s.title}</h3>
               <p className="text-sm text-bad-gray leading-relaxed">{s.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── Industries ───────────────────────────────────────────── */}
-      <section id="industries" className="bg-bad-card/40 border-y border-bad-border">
-        <div className="max-w-7xl mx-auto px-6 py-20">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14 tracking-tight">
-            Who We Work With
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            {industries.map((ind) => (
-              <span
-                key={ind}
-                className="px-6 py-3 rounded-full border border-bad-border bg-bad-card text-sm font-medium text-bad-light hover:border-bad-blue/50 transition-colors"
+      {/* ── Portfolio ────────────────────────────────────────────── */}
+      <section id="portfolio" className="bg-bad-card/30 border-y border-bad-border">
+        <div className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5">
+              Systems We&apos;ve Built
+            </h2>
+            <p className="text-lg text-bad-gray">
+              Real platforms built for real businesses. Not templates -- custom systems designed around specific workflows.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
+            {portfolio.map((p) => (
+              <div
+                key={p.name}
+                className="p-8 rounded-2xl bg-bad-card border border-bad-border hover:border-bad-blue/30 transition-all group"
+                style={{ boxShadow: '0 0 40px rgba(37, 99, 235, 0.03)' }}
               >
-                {ind}
-              </span>
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-xl font-bold text-bad-light">{p.name}</h3>
+                  <span className="text-xs font-medium text-bad-blue bg-bad-blue/10 px-3 py-1 rounded-full">
+                    {p.tag}
+                  </span>
+                </div>
+                <p className="text-sm text-bad-gray leading-relaxed mb-5">{p.desc}</p>
+                <span className="text-sm font-medium text-bad-blue group-hover:text-blue-400 transition-colors inline-flex items-center gap-1">
+                  View Project
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── About / Tracy ─────────────────────────────────────── */}
-      <section id="about" className="max-w-7xl mx-auto px-6 py-20">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
-            Tracy Bailey
-          </h2>
-          <p className="text-bad-blue font-semibold text-sm tracking-widest uppercase mb-6">
-            Business Automation Developer &amp; AI Solutions Consultant
-          </p>
-          <p className="text-bad-gray leading-relaxed mb-6">
-            We build smart systems. Automate workflows. Integrate AI. Drive real business results.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-bad-gray">
-            <span>AI Integration</span>
-            <span className="text-bad-blue">•</span>
-            <span>Consulting</span>
-            <span className="text-bad-blue">•</span>
-            <span>Custom Software</span>
+      {/* ── Tracy Bailey ─────────────────────────────────────────── */}
+      <section id="about" className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-16">
+          {/* Avatar / Initials */}
+          <div className="flex-shrink-0">
+            <div className="w-36 h-36 rounded-full bg-gradient-to-br from-bad-blue to-blue-400 flex items-center justify-center shadow-lg shadow-bad-blue/20">
+              <span className="text-4xl font-bold text-white">TB</span>
+            </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm">
-            <a href="mailto:tracy@badsaas.app" className="text-bad-gray hover:text-bad-light transition-colors">tracy@badsaas.app</a>
-            <a href="tel:4796706073" className="text-bad-gray hover:text-bad-light transition-colors">(479) 670-6073</a>
-            <a href="https://badsaas.app" className="text-bad-blue hover:text-bad-blue/80 transition-colors">badsaas.app</a>
+          {/* Info */}
+          <div className="text-center md:text-left">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Tracy Bailey</h2>
+            <p className="text-bad-blue font-semibold text-sm tracking-wide mb-6">
+              Business Automation Developer & AI Solutions Consultant
+            </p>
+            <p className="text-bad-gray leading-relaxed mb-6 max-w-lg">
+              Tracy builds custom business systems that replace manual work with automation. With experience across AV integration, field operations, and digital platforms, BAD delivers systems that actually work.
+            </p>
+            <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm">
+              <a href="mailto:tracy@badsaas.app" className="text-bad-gray hover:text-bad-light transition-colors">
+                tracy@badsaas.app
+              </a>
+              <a href="tel:4796706073" className="text-bad-gray hover:text-bad-light transition-colors">
+                (479) 670-6073
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <section id="contact" className="bg-bad-card/40 border-y border-bad-border">
-        <div className="max-w-7xl mx-auto px-6 py-24 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-5 tracking-tight">
-            Ready to eliminate manual work?
+      <section id="contact" className="border-y border-bad-border">
+        <div className="max-w-7xl mx-auto px-6 py-28 lg:py-36 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-tight">
+            Stop Managing Your Business{' '}
+            <span className="bg-gradient-to-r from-bad-blue to-blue-400 bg-clip-text text-transparent">
+              in Spreadsheets
+            </span>
           </h2>
-          <p className="text-bad-gray mb-8 max-w-xl mx-auto">
-            Let BAD build the systems your business actually needs — so you can focus on growth.
+          <p className="text-lg text-bad-gray mb-10 max-w-2xl mx-auto leading-relaxed">
+            Book a free 30-minute workflow review. We&apos;ll map your biggest bottleneck and show you exactly how to fix it.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/signup"
-              className="px-8 py-3.5 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-colors shadow-lg shadow-bad-blue/20"
-            >
-              Get Started
-            </Link>
-            <a
-              href="mailto:tracy@badsaas.app"
-              className="px-8 py-3.5 text-sm font-semibold border border-bad-border text-bad-light hover:bg-bad-card rounded-lg transition-colors"
-            >
-              Contact Tracy
-            </a>
-          </div>
+          <a
+            href="mailto:tracy@badsaas.app"
+            className="inline-block px-10 py-4 text-base font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-all shadow-lg shadow-bad-blue/25 hover:shadow-bad-blue/40"
+          >
+            Book a Discovery Call
+          </a>
+          <p className="mt-6 text-sm text-bad-gray/60">
+            No commitment. No pitch deck. Just solutions.
+          </p>
         </div>
       </section>
 
       {/* ── Footer ───────────────────────────────────────────────── */}
       <footer className="border-t border-bad-border">
-        <div className="max-w-7xl mx-auto px-6 py-10">
+        <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <img src="/bad-logo-transparent.png" alt="BAD" className="h-7" />
               <span className="text-xs text-bad-gray">
-                &copy; 2026 BAD &mdash; Business Automation &amp; Development
+                &copy; 2026 BAD &mdash; Business Automation & Development
               </span>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-bad-gray">
-              {['Solutions', 'About', 'Contact', 'Privacy', 'Terms'].map((l) => (
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-bad-gray">
+              {[
+                { label: 'Solutions', href: '#solutions' },
+                { label: 'How We Work', href: '#how-we-work' },
+                { label: 'Portfolio', href: '#portfolio' },
+                { label: 'About', href: '#about' },
+                { label: 'Contact', href: '#contact' },
+              ].map((l) => (
                 <a
-                  key={l}
-                  href={`#${l.toLowerCase()}`}
+                  key={l.label}
+                  href={l.href}
                   className="hover:text-bad-light transition-colors"
                 >
-                  {l}
+                  {l.label}
                 </a>
               ))}
             </div>
           </div>
-          <p className="text-center text-xs text-bad-gray/60 mt-6">www.badsaas.app</p>
+          <p className="text-center text-xs text-bad-gray/50 mt-8">www.badsaas.app</p>
         </div>
       </footer>
     </div>
