@@ -353,6 +353,39 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── CEO Quotes ─────────────────────────────────────────── */}
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <p className="text-center text-xs font-semibold text-bad-blue tracking-widest uppercase mb-12">What CEOs of Fortune 500 Companies Are Saying</p>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              quote: "If you are not using this technology now, you won't be in business in two years.",
+              name: "Jensen Huang",
+              title: "CEO, NVIDIA",
+            },
+            {
+              quote: "AI is probably the most important thing humanity has ever worked on. I think of it as something more profound than electricity or fire.",
+              name: "Sundar Pichai",
+              title: "CEO, Google",
+            },
+            {
+              quote: "The businesses that will thrive are the ones that figure out how to use AI to do things that were previously impossible.",
+              name: "Satya Nadella",
+              title: "CEO, Microsoft",
+            },
+          ].map((q) => (
+            <div key={q.name} className="relative p-8 rounded-xl bg-bad-card/60 border border-bad-border hover:border-bad-blue/30 transition-colors">
+              <div className="text-5xl text-bad-blue/20 font-serif absolute top-4 left-6">&ldquo;</div>
+              <p className="text-sm text-bad-light/90 leading-relaxed italic mt-6 mb-6">{q.quote}</p>
+              <div className="border-t border-bad-border pt-4">
+                <p className="text-sm font-semibold text-bad-light">{q.name}</p>
+                <p className="text-xs text-bad-gray">{q.title}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── The Problem ──────────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
         <div className="max-w-3xl mx-auto text-center mb-16">
