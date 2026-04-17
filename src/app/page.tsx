@@ -218,6 +218,9 @@ export default function LandingPage() {
     <div className="min-h-screen bg-bad-bg text-bad-light relative">
       {/* ── Background Effects ──────────────────────────────────── */}
       <div className="foil-shimmer" />
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute top-[-50%] left-[-50%] w-[60%] h-[200%] bg-gradient-to-r from-transparent via-blue-500/[0.02] to-transparent rotate-[20deg]" style={{ animation: 'shimmer3 14s linear infinite' }} />
+      </div>
       <div className="bg-particles">
         {Array.from({ length: 20 }).map((_, i) => (
           <span
