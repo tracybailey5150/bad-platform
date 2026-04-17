@@ -235,9 +235,9 @@ export default function LandingPage() {
 
       {/* ── Nav ──────────────────────────────────────────────────── */}
       <nav className="sticky top-0 z-50 bg-black border-b border-bad-border">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-6">
           <div className="flex items-center gap-4">
-            <img src="/bad-logo.png" alt="BAD" className="h-12" />
+            <img src="/bad-logo.png" alt="BAD" className="h-16" />
             <div className="hidden sm:block border-l border-bad-border pl-4">
               <div className="text-[11px] font-semibold text-bad-light tracking-widest uppercase leading-tight">Business Automation & Development</div>
               <div className="text-[10px] text-bad-blue tracking-wider">AI Integration · Analytics · Consulting</div>
