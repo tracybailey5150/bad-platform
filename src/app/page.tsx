@@ -245,6 +245,7 @@ export default function LandingPage() {
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
           {/* Left */}
           <div className="flex-1 text-center lg:text-left">
+            <img src="/bad-logo-transparent.png" alt="BAD" className="h-20 md:h-28 mb-8 mx-auto lg:mx-0" />
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-bad-blue/10 border border-bad-blue/20 mb-8">
               <span className="w-2 h-2 rounded-full bg-bad-blue animate-pulse" />
               <span className="text-xs font-medium text-bad-blue tracking-wide">Business Automation & AI Consulting</span>
@@ -553,7 +554,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Footer ───────────────────────────────────────────────── */}
-      <footer className="border-t border-bad-border">
+      <footer className="bg-black border-t border-bad-border">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
