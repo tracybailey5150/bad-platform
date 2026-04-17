@@ -333,20 +333,57 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── About / Tracy ─────────────────────────────────────── */}
+      <section id="about" className="max-w-7xl mx-auto px-6 py-20">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
+            Tracy Bailey
+          </h2>
+          <p className="text-bad-blue font-semibold text-sm tracking-widest uppercase mb-6">
+            Business Automation Developer &amp; AI Solutions Consultant
+          </p>
+          <p className="text-bad-gray leading-relaxed mb-6">
+            We build smart systems. Automate workflows. Integrate AI. Drive real business results.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-bad-gray">
+            <span>AI Integration</span>
+            <span className="text-bad-blue">•</span>
+            <span>Consulting</span>
+            <span className="text-bad-blue">•</span>
+            <span>Custom Software</span>
+          </div>
+          <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm">
+            <a href="mailto:tracy@badsaas.app" className="text-bad-gray hover:text-bad-light transition-colors">tracy@badsaas.app</a>
+            <a href="https://linkedin.com/in/tracybailey" target="_blank" rel="noopener noreferrer" className="text-bad-gray hover:text-bad-light transition-colors">LinkedIn</a>
+            <a href="https://badsaas.app" className="text-bad-blue hover:text-bad-blue/80 transition-colors">badsaas.app</a>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <section id="contact" className="max-w-7xl mx-auto px-6 py-24 text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-5 tracking-tight">
-          Ready to eliminate manual work?
-        </h2>
-        <p className="text-bad-gray mb-8 max-w-xl mx-auto">
-          Let BAD build the systems your team actually needs — so you can focus on growth.
-        </p>
-        <Link
-          href="/signup"
-          className="inline-block px-8 py-3.5 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-colors shadow-lg shadow-bad-blue/20"
-        >
-          Get Started
-        </Link>
+      <section id="contact" className="bg-bad-card/40 border-y border-bad-border">
+        <div className="max-w-7xl mx-auto px-6 py-24 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-5 tracking-tight">
+            Ready to eliminate manual work?
+          </h2>
+          <p className="text-bad-gray mb-8 max-w-xl mx-auto">
+            Let BAD build the systems your business actually needs — so you can focus on growth.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/signup"
+              className="px-8 py-3.5 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-colors shadow-lg shadow-bad-blue/20"
+            >
+              Get Started
+            </Link>
+            <a
+              href="mailto:tracy@badsaas.app"
+              className="px-8 py-3.5 text-sm font-semibold border border-bad-border text-bad-light hover:bg-bad-card rounded-lg transition-colors"
+            >
+              Contact Tracy
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* ── Footer ───────────────────────────────────────────────── */}
@@ -360,7 +397,7 @@ export default function LandingPage() {
               </span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-bad-gray">
-              {['Solutions', 'Modules', 'About', 'Contact', 'Privacy', 'Terms'].map((l) => (
+              {['Solutions', 'About', 'Contact', 'Privacy', 'Terms'].map((l) => (
                 <a
                   key={l}
                   href={`#${l.toLowerCase()}`}
