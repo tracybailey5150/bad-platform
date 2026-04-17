@@ -302,7 +302,7 @@ export default function LandingPage() {
               Actually Needs
             </h1>
             <p className="mt-7 text-lg lg:text-xl text-bad-gray max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Custom software, workflow automation, AI integration, and consulting for businesses tired of duct-taping spreadsheets and disconnected tools together.
+              We consult and build custom workflows for executives, multi-business owners, and small to medium-size businesses. Custom software, workflow automation, AI integration, and consulting for organizations tired of duct-taping spreadsheets and disconnected tools together.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4">
               <a
@@ -503,7 +503,7 @@ export default function LandingPage() {
             {
               step: '01',
               title: 'Discovery',
-              desc: 'We audit your current workflows, tools, and pain points. No generic sales pitch. We learn how your business actually runs before proposing anything.',
+              desc: 'We sit down with executives and business owners to audit current workflows, tools, and pain points. Whether you run one company or ten — we learn how your operations actually work before proposing anything.',
             },
             {
               step: '02',
@@ -581,7 +581,7 @@ export default function LandingPage() {
               Business Automation Developer & AI Solutions Consultant
             </p>
             <p className="text-bad-gray leading-relaxed mb-6 max-w-lg">
-              Tracy builds custom business systems that replace manual work with automation. With experience across AV integration, field operations, and digital platforms, BAD delivers systems that actually work.
+              Tracy consults with executives and business owners to design and build custom systems that replace manual work with automation. From single-location service companies to multi-business operators managing complex portfolios — BAD delivers software and workflows that actually work.
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm">
               <a href="mailto:tracy@badsaas.app" className="text-bad-gray hover:text-bad-light transition-colors">
