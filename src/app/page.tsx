@@ -261,9 +261,12 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Right — Dashboard mockup */}
+          {/* Right — Brand visual */}
           <div className="flex-shrink-0 w-full max-w-md lg:max-w-lg flex justify-center">
-            <DashboardMockup />
+            <div className="relative w-full rounded-2xl overflow-hidden border border-bad-border shadow-2xl shadow-bad-blue/10">
+              <img src="/bad-brand-hero.png" alt="BAD Platform" className="w-full h-auto" />
+              <div className="absolute inset-0 bg-gradient-to-t from-bad-bg/60 via-transparent to-transparent" />
+            </div>
           </div>
         </div>
       </section>
