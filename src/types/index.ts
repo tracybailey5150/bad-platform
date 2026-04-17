@@ -156,6 +156,37 @@ export interface QuoteLineItem {
   total: number;
 }
 
+export type NotificationType =
+  | 'lead_assigned'
+  | 'status_changed'
+  | 'booking_reminder'
+  | 'quote_accepted'
+  | 'workflow_due'
+  | 'form_submitted'
+  | 'team_invite'
+  | 'system';
+
+export interface Notification {
+  id: string;
+  user_id: string;
+  org_id: string;
+  type: NotificationType;
+  title: string;
+  body: string | null;
+  link: string | null;
+  read: boolean;
+  created_at: string;
+}
+
+export type BillingPlan = 'free' | 'pro' | 'business';
+
+export interface OrgModule {
+  org_id: string;
+  module_key: string;
+  enabled: boolean;
+  updated_at: string;
+}
+
 export type ActivityEventType =
   | 'lead_created'
   | 'lead_updated'
