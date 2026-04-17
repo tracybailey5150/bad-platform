@@ -45,9 +45,8 @@ export default function LandingPage() {
       {/* Nav */}
       <nav className="border-b border-zinc-800/50">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-white">BAD</span>
-            <span className="text-xs text-zinc-500 mt-1">Platform</span>
+          <div className="flex items-center">
+            <img src="/bad-logo-transparent.png" alt="BAD" className="h-10" />
           </div>
           <div className="flex items-center gap-4">
             <Link
@@ -68,6 +67,7 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-6 pt-24 pb-16 text-center">
+        <img src="/bad-logo-transparent.png" alt="BAD — Business Automation & Development" className="h-32 md:h-44 mx-auto mb-8" />
         <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
           Business Automation
           <br />

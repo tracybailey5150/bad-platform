@@ -157,9 +157,8 @@ export function Sidebar() {
       {/* Logo */}
       <div className="flex items-center justify-between h-16 px-4 border-b border-zinc-800">
         {!collapsed && (
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <span className="text-xl font-bold text-white">BAD</span>
-            <span className="text-xs text-zinc-500 hidden lg:block">Platform</span>
+          <Link href="/dashboard" className="flex items-center">
+            <img src="/bad-logo-transparent.png" alt="BAD" className="h-8" />
           </Link>
         )}
         <button
