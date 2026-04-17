@@ -279,21 +279,10 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Right — Abstract orb visual */}
-          <div className="hidden lg:flex flex-shrink-0 w-full max-w-sm justify-center">
-            <div className="relative w-full aspect-square">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-bad-blue/20 via-blue-600/10 to-transparent blur-3xl" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full border border-bad-blue/15 flex items-center justify-center animate-[spin_60s_linear_infinite]">
-                <div className="w-52 h-52 rounded-full border border-bad-blue/25 flex items-center justify-center">
-                  <div className="w-36 h-36 rounded-full bg-gradient-to-br from-bad-blue/25 to-blue-600/5 flex items-center justify-center shadow-lg shadow-bad-blue/20">
-                    <img src="/bad-logo-transparent.png" alt="BAD" className="h-16 opacity-90 animate-[spin_60s_linear_infinite_reverse]" />
-                  </div>
-                </div>
-              </div>
-              <div className="absolute top-6 right-2 px-3 py-1.5 rounded-lg bg-bad-card/80 border border-bad-border text-xs text-bad-light backdrop-blur-sm shadow-lg">Automation</div>
-              <div className="absolute bottom-20 -left-2 px-3 py-1.5 rounded-lg bg-bad-card/80 border border-bad-border text-xs text-bad-light backdrop-blur-sm shadow-lg">AI Integration</div>
-              <div className="absolute top-1/3 -left-6 px-3 py-1.5 rounded-lg bg-bad-card/80 border border-bad-blue/30 text-xs text-bad-blue backdrop-blur-sm shadow-lg">Custom Software</div>
-              <div className="absolute bottom-6 right-6 px-3 py-1.5 rounded-lg bg-bad-card/80 border border-bad-border text-xs text-bad-light backdrop-blur-sm shadow-lg">Consulting</div>
+          {/* Right — Solutions showcase image */}
+          <div className="flex-shrink-0 w-full max-w-md lg:max-w-lg flex justify-center">
+            <div className="relative w-full rounded-2xl overflow-hidden border border-bad-border/50 shadow-2xl shadow-bad-blue/10">
+              <img src="/bad-hero-solutions.png" alt="What BAD Builds — Lead Response, CRM Integration, Workflow, Scheduling, Dashboards, AI" className="w-full h-auto" />
             </div>
           </div>
         </div>
