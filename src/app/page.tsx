@@ -354,7 +354,7 @@ export default function LandingPage() {
           </div>
           <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm">
             <a href="mailto:tracy@badsaas.app" className="text-bad-gray hover:text-bad-light transition-colors">tracy@badsaas.app</a>
-            <a href="https://linkedin.com/in/tracybailey" target="_blank" rel="noopener noreferrer" className="text-bad-gray hover:text-bad-light transition-colors">LinkedIn</a>
+            <a href="tel:4796706073" className="text-bad-gray hover:text-bad-light transition-colors">(479) 670-6073</a>
             <a href="https://badsaas.app" className="text-bad-blue hover:text-bad-blue/80 transition-colors">badsaas.app</a>
           </div>
         </div>
