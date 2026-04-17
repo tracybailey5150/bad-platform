@@ -215,7 +215,24 @@ const portfolio = [
 /* ------------------------------------------------------------------ */
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-bad-bg text-bad-light">
+    <div className="min-h-screen bg-bad-bg text-bad-light relative">
+      {/* ── Background Effects ──────────────────────────────────── */}
+      <div className="foil-shimmer" />
+      <div className="bg-particles">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <span
+            key={i}
+            style={{
+              left: `${Math.random() * 100}%`,
+              width: `${3 + Math.random() * 6}px`,
+              height: `${3 + Math.random() * 6}px`,
+              animationDuration: `${8 + Math.random() * 16}s`,
+              animationDelay: `${Math.random() * 10}s`,
+            }}
+          />
+        ))}
+      </div>
+
       {/* ── Nav ──────────────────────────────────────────────────── */}
       <nav className="sticky top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-bad-border">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
@@ -241,11 +258,15 @@ export default function LandingPage() {
       </nav>
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-6 pt-24 pb-20 lg:pt-32 lg:pb-28">
+      <section className="relative max-w-7xl mx-auto px-6 pt-24 pb-20 lg:pt-32 lg:pb-28">
+        {/* Subtle growth chart background */}
+        <svg className="growth-line" viewBox="0 0 1200 300" preserveAspectRatio="none">
+          <path d="M0,280 C100,270 200,260 300,240 C400,220 450,200 500,170 C550,140 600,130 700,110 C800,90 850,70 950,45 C1050,20 1100,15 1200,10" fill="none" stroke="#2563EB" strokeWidth="2" />
+          <path d="M0,290 C150,285 250,275 400,260 C550,245 600,230 700,200 C800,170 900,140 1000,100 C1100,60 1150,40 1200,30" fill="none" stroke="#2563EB" strokeWidth="1" />
+        </svg>
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
           {/* Left */}
           <div className="flex-1 text-center lg:text-left">
-            <img src="/bad-logo-transparent.png" alt="BAD" className="h-20 md:h-28 mb-8 mx-auto lg:mx-0" />
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-bad-blue/10 border border-bad-blue/20 mb-8">
               <span className="w-2 h-2 rounded-full bg-bad-blue animate-pulse" />
               <span className="text-xs font-medium text-bad-blue tracking-wide">Business Automation & AI Consulting</span>
@@ -280,7 +301,7 @@ export default function LandingPage() {
           </div>
 
           {/* Right — Solutions showcase image */}
-          <div className="flex-shrink-0 w-full max-w-md lg:max-w-lg flex justify-center">
+          <div className="flex-shrink-0 w-full max-w-xl lg:max-w-2xl flex justify-center">
             <div className="relative w-full rounded-2xl overflow-hidden border border-bad-border/50 shadow-2xl shadow-bad-blue/10">
               <img src="/bad-hero-solutions.png" alt="What BAD Builds — Lead Response, CRM Integration, Workflow, Scheduling, Dashboards, AI" className="w-full h-auto" />
             </div>
