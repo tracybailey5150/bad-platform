@@ -144,10 +144,10 @@ function DashboardMockup() {
 /*  Pillars                                                            */
 /* ------------------------------------------------------------------ */
 const pillars = [
-  { title: 'AUTOMATION', desc: 'Streamline processes and eliminate busywork.', icon: <GearIcon /> },
-  { title: 'INTEGRATION', desc: 'Connect your tools and data seamlessly.', icon: <PuzzleIcon /> },
-  { title: 'VISIBILITY', desc: 'Real-time insights that drive better decisions.', icon: <ChartIcon /> },
-  { title: 'GROWTH', desc: 'Scale your business with confidence.', icon: <RocketIcon /> },
+  { title: 'CUSTOM SOFTWARE', desc: 'Purpose-built business apps designed around how your company actually operates — not forced into a template.', icon: <GearIcon /> },
+  { title: 'WORKFLOW AUTOMATION', desc: 'Replace manual steps, spreadsheets, and disconnected tools with systems that move work forward automatically.', icon: <PuzzleIcon /> },
+  { title: 'AI INTEGRATION', desc: 'Smart lead scoring, draft responses, data extraction, routing suggestions, and workflow recommendations powered by AI.', icon: <ChartIcon /> },
+  { title: 'CONSULTING & STRATEGY', desc: 'We design the right system first, then build it. Consulting-led implementation that solves real operational problems.', icon: <RocketIcon /> },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -155,23 +155,23 @@ const pillars = [
 /* ------------------------------------------------------------------ */
 const solutions = [
   {
-    title: 'Lead Response System',
-    desc: 'Capture, score, and route leads from multiple sources. Never miss a prospect with automated intake and instant notifications.',
+    title: 'Lead Response & CRM',
+    desc: 'Capture, qualify, score, and route leads automatically. AI-powered follow-up and intake forms that never let a prospect slip through.',
     icon: <InboxIcon />,
   },
   {
-    title: 'Operations Workflow App',
-    desc: 'Tasks, approvals, and internal workflow management. Keep your team aligned and projects moving forward.',
+    title: 'Workflow & Operations Apps',
+    desc: 'Replace spreadsheets and manual tracking with custom workflow systems. Tasks, approvals, status boards, and automated handoffs.',
     icon: <WorkflowIcon />,
   },
   {
-    title: 'Scheduling & Intake System',
-    desc: 'Public booking pages, custom intake forms, automated reminders, and calendar management.',
+    title: 'Scheduling, Intake & Booking',
+    desc: 'Client-facing booking pages, custom intake forms, automated reminders, and calendar management — all branded to your business.',
     icon: <CalendarIcon />,
   },
   {
-    title: 'Dashboard / Orchestration Platform',
-    desc: 'Real-time KPIs, reporting, and full operational orchestration. Data-driven decisions at a glance.',
+    title: 'Dashboards & Reporting',
+    desc: 'Real-time KPIs, operational dashboards, and reporting platforms that give owners and managers actual visibility into what matters.',
     icon: <DashboardIcon />,
   },
 ];
@@ -180,12 +180,20 @@ const solutions = [
 /*  Industries                                                         */
 /* ------------------------------------------------------------------ */
 const industries = [
-  'HVAC',
-  'AV Integration',
-  'Construction',
-  'Real Estate',
-  'Field Services',
-  'Professional Services',
+  'Any Business With Manual Workflows',
+  'Multi-Business Owners & Executives',
+  'Service Companies',
+  'Contractors & Field Teams',
+  'Professional Services & Consulting',
+  'Healthcare & Clinics',
+  'Real Estate & Property Management',
+  'HVAC, Electrical & Plumbing',
+  'AV Integration & Technology',
+  'Construction & Trades',
+  'Appointment-Based Businesses',
+  'Logistics & Distribution',
+  'Retail & E-Commerce Operations',
+  'Agencies & Creative Studios',
 ];
 
 /* ------------------------------------------------------------------ */
@@ -233,8 +241,9 @@ export default function LandingPage() {
               <span className="text-bad-blue">Real Results.</span>
             </h1>
             <p className="mt-6 text-lg text-bad-gray max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              BAD builds AI-assisted software, automation systems, and custom
-              applications that help businesses work smarter and grow faster.
+              BAD is a business automation, custom software, AI integration, and
+              consulting company. We design and build the systems your business
+              actually needs — not more generic tools you have to force-fit.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4">
               <a
@@ -263,7 +272,7 @@ export default function LandingPage() {
       <section className="bg-bad-card/40 border-y border-bad-border">
         <div className="max-w-7xl mx-auto px-6 py-20">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14 tracking-tight">
-            What BAD Delivers
+            What We Build
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {pillars.map((p) => (
@@ -287,7 +296,7 @@ export default function LandingPage() {
           Solutions
         </h2>
         <p className="text-bad-gray text-center mb-14 max-w-2xl mx-auto">
-          Purpose-built modules designed to handle the real workflows your business runs on every day.
+          From lead capture to reporting, we build the systems that replace manual work, disconnected tools, and operational friction.
         </p>
         <div className="grid sm:grid-cols-2 gap-6">
           {solutions.map((s) => (
@@ -309,7 +318,7 @@ export default function LandingPage() {
       <section id="industries" className="bg-bad-card/40 border-y border-bad-border">
         <div className="max-w-7xl mx-auto px-6 py-20">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14 tracking-tight">
-            Industries We Serve
+            Who We Work With
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             {industries.map((ind) => (
