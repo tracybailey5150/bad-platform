@@ -7,9 +7,12 @@ const publicPaths = ['/', '/login', '/signup', '/forgot-password', '/reset-passw
 function isPublicPath(pathname: string) {
   if (publicPaths.includes(pathname)) return true;
   if (pathname.startsWith('/intake/')) return true;
+  if (pathname.startsWith('/service-request')) return true;
   if (pathname.startsWith('/api/')) return true;
   if (pathname.startsWith('/_next/')) return true;
   if (pathname.startsWith('/favicon.ico')) return true;
+  // Allow static files (images, fonts, etc.)
+  if (pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|eot|css|js)$/)) return true;
   return false;
 }
 
