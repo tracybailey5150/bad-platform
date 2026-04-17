@@ -171,9 +171,9 @@ const solutions = [
     icon: <CalendarIcon />,
   },
   {
-    title: 'Dashboards & Reporting',
-    desc: 'Real-time KPIs, operational dashboards, and reporting platforms that give owners and managers actual visibility into what matters instead of another spreadsheet.',
-    bullets: ['Real-time KPI tracking', 'Custom report builders', 'Team performance views', 'Executive summaries'],
+    title: 'Dashboards, Reporting & Analytics',
+    desc: 'Real-time KPIs, operational dashboards, analytics, and reporting platforms that give owners and managers actual visibility into what matters — trends, performance, and where to focus next.',
+    bullets: ['Real-time KPI tracking & analytics', 'Trend analysis & forecasting', 'Custom report builders', 'Team performance & revenue views'],
     icon: <DashboardIcon />,
   },
   {
@@ -240,7 +240,7 @@ export default function LandingPage() {
             <img src="/bad-logo.png" alt="BAD" className="h-12" />
             <div className="hidden sm:block border-l border-bad-border pl-4">
               <div className="text-[11px] font-semibold text-bad-light tracking-widest uppercase leading-tight">Business Automation & Development</div>
-              <div className="text-[10px] text-bad-blue tracking-wider">AI Integration & Consulting</div>
+              <div className="text-[10px] text-bad-blue tracking-wider">AI Integration · Analytics · Consulting</div>
             </div>
           </div>
           <div className="hidden md:flex items-center gap-8">
@@ -265,10 +265,27 @@ export default function LandingPage() {
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative max-w-7xl mx-auto px-6 pt-24 pb-20 lg:pt-32 lg:pb-28">
-        {/* Subtle growth chart background */}
+        {/* Analytics-style chart background with realistic ups and downs */}
         <svg className="growth-line" viewBox="0 0 1200 300" preserveAspectRatio="none">
-          <path d="M0,280 C100,270 200,260 300,240 C400,220 450,200 500,170 C550,140 600,130 700,110 C800,90 850,70 950,45 C1050,20 1100,15 1200,10" fill="none" stroke="#2563EB" strokeWidth="2" />
-          <path d="M0,290 C150,285 250,275 400,260 C550,245 600,230 700,200 C800,170 900,140 1000,100 C1100,60 1150,40 1200,30" fill="none" stroke="#2563EB" strokeWidth="1" />
+          {/* Main analytics line — volatile with overall upward trend */}
+          <path d="M0,260 L40,250 L80,265 L120,240 L160,255 L200,230 L240,245 L280,220 L320,235 L360,200 L400,215 L440,190 L480,210 L520,180 L560,195 L600,165 L640,185 L680,155 L720,170 L760,140 L800,160 L840,130 L880,145 L920,115 L960,135 L1000,100 L1040,120 L1080,85 L1120,95 L1160,60 L1200,40" fill="none" stroke="#2563EB" strokeWidth="2.5" />
+          {/* Gradient fill under the line */}
+          <path d="M0,260 L40,250 L80,265 L120,240 L160,255 L200,230 L240,245 L280,220 L320,235 L360,200 L400,215 L440,190 L480,210 L520,180 L560,195 L600,165 L640,185 L680,155 L720,170 L760,140 L800,160 L840,130 L880,145 L920,115 L960,135 L1000,100 L1040,120 L1080,85 L1120,95 L1160,60 L1200,40 L1200,300 L0,300 Z" fill="url(#chartGradient)" />
+          {/* Secondary line — smoother moving average */}
+          <path d="M0,265 C100,255 200,240 300,230 C400,215 500,200 600,180 C700,160 800,145 900,125 C1000,110 1100,80 1200,50" fill="none" stroke="#2563EB" strokeWidth="1" strokeDasharray="6 4" />
+          {/* Data points on the peaks */}
+          <circle cx="360" cy="200" r="3" fill="#2563EB" />
+          <circle cx="520" cy="180" r="3" fill="#2563EB" />
+          <circle cx="680" cy="155" r="3" fill="#2563EB" />
+          <circle cx="920" cy="115" r="3" fill="#2563EB" />
+          <circle cx="1160" cy="60" r="4" fill="#2563EB" />
+          {/* Gradient definition */}
+          <defs>
+            <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#2563EB" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="#2563EB" stopOpacity="0" />
+            </linearGradient>
+          </defs>
         </svg>
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
           {/* Left */}
