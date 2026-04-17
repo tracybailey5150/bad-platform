@@ -247,18 +247,24 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            {['Solutions', 'How We Work', 'Portfolio', 'About', 'Contact'].map((l) => (
+            {[
+              { label: 'Solutions', href: '/solutions' },
+              { label: 'How We Work', href: '#how-we-work' },
+              { label: 'Portfolio', href: '/portfolio' },
+              { label: 'About', href: '/about' },
+              { label: 'Contact', href: '/contact' },
+            ].map((l) => (
               <a
-                key={l}
-                href={`#${l.toLowerCase().replace(/\s+/g, '-')}`}
+                key={l.label}
+                href={l.href}
                 className="text-sm text-bad-gray hover:text-bad-light transition-colors"
               >
-                {l}
+                {l.label}
               </a>
             ))}
           </div>
           <a
-            href="#contact"
+            href="/contact"
             className="px-5 py-2 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-colors"
           >
             Book a Call
@@ -611,7 +617,7 @@ export default function LandingPage() {
             Book a free 30-minute workflow review. We&apos;ll map your biggest bottleneck and show you exactly how to fix it.
           </p>
           <a
-            href="mailto:tracy@badsaas.app"
+            href="/contact"
             className="inline-block px-10 py-4 text-base font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-all shadow-lg shadow-bad-blue/25 hover:shadow-bad-blue/40"
           >
             Book a Discovery Call
@@ -634,11 +640,13 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-bad-gray">
               {[
-                { label: 'Solutions', href: '#solutions' },
-                { label: 'How We Work', href: '#how-we-work' },
-                { label: 'Portfolio', href: '#portfolio' },
-                { label: 'About', href: '#about' },
-                { label: 'Contact', href: '#contact' },
+                { label: 'Solutions', href: '/solutions' },
+                { label: 'Portfolio', href: '/portfolio' },
+                { label: 'Pricing', href: '/pricing' },
+                { label: 'About', href: '/about' },
+                { label: 'Contact', href: '/contact' },
+                { label: 'Privacy', href: '/privacy' },
+                { label: 'Terms', href: '/terms' },
               ].map((l) => (
                 <a
                   key={l.label}

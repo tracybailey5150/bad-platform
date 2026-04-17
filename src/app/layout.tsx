@@ -8,9 +8,40 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'BAD Platform - Business Automation & Development',
+  metadataBase: new URL('https://badsaas.app'),
+  title: 'BAD — Business Automation & Development',
   description:
-    'Custom business automation tools for lead management, workflows, scheduling, and reporting.',
+    'Custom business automation software, workflow design, AI integration, and consulting for businesses that demand better. We consult, design, and build purpose-built systems that replace manual work.',
+  keywords: [
+    'business automation',
+    'custom software development',
+    'AI integration',
+    'workflow automation',
+    'consulting',
+    'SaaS',
+    'lead management',
+    'business operations',
+  ],
+  openGraph: {
+    title: 'BAD — Business Automation & Development',
+    description:
+      'Custom automation software, workflow design, AI integration, and consulting. We build the systems your business actually needs.',
+    url: 'https://badsaas.app',
+    siteName: 'BAD — Business Automation & Development',
+    images: [
+      {
+        url: '/bad-logo.png',
+        width: 512,
+        height: 512,
+        alt: 'BAD — Business Automation & Development',
+      },
+    ],
+    type: 'website',
+  },
+  icons: {
+    icon: '/bad-logo.png',
+    apple: '/bad-logo.png',
+  },
 };
 
 export default function RootLayout({
