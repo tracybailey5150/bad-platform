@@ -234,9 +234,15 @@ export default function LandingPage() {
       </div>
 
       {/* ── Nav ──────────────────────────────────────────────────── */}
-      <nav className="sticky top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-bad-border">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-          <img src="/bad-logo.png" alt="BAD" className="h-8" />
+      <nav className="sticky top-0 z-50 bg-black border-b border-bad-border">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-4">
+            <img src="/bad-logo.png" alt="BAD" className="h-12" />
+            <div className="hidden sm:block border-l border-bad-border pl-4">
+              <div className="text-[11px] font-semibold text-bad-light tracking-widest uppercase leading-tight">Business Automation & Development</div>
+              <div className="text-[10px] text-bad-blue tracking-wider">AI Integration & Consulting</div>
+            </div>
+          </div>
           <div className="hidden md:flex items-center gap-8">
             {['Solutions', 'How We Work', 'Portfolio', 'About', 'Contact'].map((l) => (
               <a
