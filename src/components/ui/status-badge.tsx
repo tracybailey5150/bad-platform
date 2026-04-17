@@ -1,7 +1,7 @@
 import { Badge } from './badge';
-import type { LeadStatus, WorkflowStatus, WorkflowItemStatus, BookingStatus, QuoteStatus } from '@/types';
+import type { LeadStatus, WorkflowStatus, BookingStatus, QuoteStatus } from '@/types';
 
-type StatusType = LeadStatus | WorkflowStatus | WorkflowItemStatus | BookingStatus | QuoteStatus;
+type StatusType = LeadStatus | WorkflowStatus | BookingStatus | QuoteStatus | string;
 
 const statusConfig: Record<string, { variant: 'default' | 'success' | 'warning' | 'danger' | 'info'; label: string }> = {
   // Lead statuses
@@ -28,6 +28,8 @@ const statusConfig: Record<string, { variant: 'default' | 'success' | 'warning' 
   draft: { variant: 'default', label: 'Draft' },
   sent: { variant: 'info', label: 'Sent' },
   accepted: { variant: 'success', label: 'Accepted' },
+  declined: { variant: 'danger', label: 'Declined' },
+  expired: { variant: 'warning', label: 'Expired' },
   rejected: { variant: 'danger', label: 'Rejected' },
 };
 

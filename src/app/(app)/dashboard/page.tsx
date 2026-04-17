@@ -68,8 +68,9 @@ export default function DashboardPage() {
       changeLabel: 'vs last week',
     },
     {
-      title: 'Active Workflows',
+      title: 'Active Items',
       value: kpis.activeWorkflows,
+      changeLabel: 'workflow items',
     },
     {
       title: 'Upcoming Bookings',
@@ -213,7 +214,7 @@ export default function DashboardPage() {
                 New Workflow
               </Button>
             </Link>
-            <Link href="/bookings?action=create" className="block">
+            <Link href="/scheduling?action=create" className="block">
               <Button variant="secondary" className="w-full justify-start">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />

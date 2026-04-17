@@ -27,7 +27,7 @@ export async function GET() {
   ] = await Promise.all([
     admin.from('leads').select('*', { count: 'exact', head: true }).eq('org_id', orgId).gte('created_at', weekAgo.toISOString()),
     admin.from('leads').select('*', { count: 'exact', head: true }).eq('org_id', orgId).gte('created_at', twoWeeksAgo.toISOString()).lt('created_at', weekAgo.toISOString()),
-    admin.from('workflows').select('*', { count: 'exact', head: true }).eq('org_id', orgId).eq('status', 'active'),
+    admin.from('workflow_items').select('*', { count: 'exact', head: true }).eq('org_id', orgId).neq('status', 'Done'),
     admin.from('bookings').select('*', { count: 'exact', head: true }).eq('org_id', orgId).gte('start_time', now.toISOString()).lte('start_time', weekAhead.toISOString()),
     admin.from('quotes').select('*', { count: 'exact', head: true }).eq('org_id', orgId).in('status', ['draft', 'sent']),
   ]);
@@ -58,18 +58,18 @@ export async function GET() {
     });
   }
 
-  // Workflow distribution
-  const { data: workflows } = await admin
-    .from('workflows')
+  // Workflow item status distribution
+  const { data: workflowItems } = await admin
+    .from('workflow_items')
     .select('status')
     .eq('org_id', orgId);
 
   const wfCounts: Record<string, number> = {};
-  (workflows || []).forEach((w) => {
+  (workflowItems || []).forEach((w) => {
     wfCounts[w.status] = (wfCounts[w.status] || 0) + 1;
   });
   const workflowDistribution = Object.entries(wfCounts).map(([name, value]) => ({
-    name: name.charAt(0).toUpperCase() + name.slice(1),
+    name,
     value,
   }));
 

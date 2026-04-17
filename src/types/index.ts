@@ -68,13 +68,14 @@ export interface FormSubmission {
 }
 
 export type WorkflowStatus = 'active' | 'paused' | 'completed' | 'archived';
-export type WorkflowItemStatus = 'todo' | 'in_progress' | 'review' | 'done';
+export type WorkflowItemPriority = 'low' | 'medium' | 'high' | 'urgent';
 
 export interface Workflow {
   id: string;
   org_id: string;
   name: string;
   description: string | null;
+  statuses: string[];
   status: WorkflowStatus;
   created_by: string;
   created_at: string;
@@ -87,12 +88,22 @@ export interface WorkflowItem {
   org_id: string;
   title: string;
   description: string | null;
-  status: WorkflowItemStatus;
+  status: string;
+  priority: WorkflowItemPriority;
   assigned_to: string | null;
+  assignee_name?: string | null;
   due_date: string | null;
+  notes: string | null;
+  subtasks: Subtask[];
   position: number;
   created_at: string;
   updated_at: string;
+}
+
+export interface Subtask {
+  id: string;
+  title: string;
+  done: boolean;
 }
 
 export type BookingStatus = 'pending' | 'confirmed' | 'cancelled' | 'completed';
@@ -107,12 +118,14 @@ export interface Booking {
   status: BookingStatus;
   client_name: string | null;
   client_email: string | null;
+  client_phone: string | null;
+  notes: string | null;
   created_by: string;
   created_at: string;
   updated_at: string;
 }
 
-export type QuoteStatus = 'draft' | 'sent' | 'accepted' | 'rejected';
+export type QuoteStatus = 'draft' | 'sent' | 'accepted' | 'declined' | 'expired';
 
 export interface Quote {
   id: string;
@@ -121,15 +134,22 @@ export interface Quote {
   client_name: string;
   client_email: string | null;
   items: QuoteLineItem[];
+  subtotal: number;
+  tax_rate: number;
+  tax_amount: number;
+  discount: number;
   total: number;
   status: QuoteStatus;
+  valid_until: string | null;
   notes: string | null;
+  terms: string | null;
   created_by: string;
   created_at: string;
   updated_at: string;
 }
 
 export interface QuoteLineItem {
+  id: string;
   description: string;
   quantity: number;
   unit_price: number;
