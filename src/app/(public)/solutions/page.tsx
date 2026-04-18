@@ -1,11 +1,9 @@
-import Link from 'next/link';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Solutions | BAD — Business Automation & Development',
-  description:
-    'Custom automation solutions: lead response, workflow operations, scheduling, dashboards, analytics, and AI integration for your business.',
-};
+import Link from 'next/link';
+import { useState } from 'react';
+
+// metadata moved to layout or generateMetadata for client component
 
 const solutions = [
   {
@@ -125,6 +123,127 @@ const solutions = [
   },
 ];
 
+/* ------------------------------------------------------------------ */
+/*  Interactive Kanban Demo                                            */
+/* ------------------------------------------------------------------ */
+const demoCards = [
+  { id: '1', title: 'New HVAC Lead — Johnson Residence', priority: 'high', assignee: 'TM', due: 'Today', tag: 'Lead' },
+  { id: '2', title: 'Website Inquiry — Commercial Build', priority: 'medium', assignee: 'SB', due: 'Tomorrow', tag: 'Lead' },
+  { id: '3', title: 'Follow-up: Martinez Remodel Quote', priority: 'high', assignee: 'TM', due: 'Today', tag: 'Follow-up' },
+  { id: '4', title: 'Schedule Site Visit — Oak Hills', priority: 'low', assignee: 'JR', due: 'Thu', tag: 'Task' },
+  { id: '5', title: 'Send Proposal — River Walk Office', priority: 'medium', assignee: 'TM', due: 'Wed', tag: 'Proposal' },
+  { id: '6', title: 'Review Subcontractor Bids', priority: 'low', assignee: 'SB', due: 'Fri', tag: 'Task' },
+  { id: '7', title: 'Invoice Approved — Elm Street', priority: 'high', assignee: 'TM', due: 'Done', tag: 'Invoice' },
+  { id: '8', title: 'Project Handoff — Bentonville Clinic', priority: 'medium', assignee: 'JR', due: 'Done', tag: 'Handoff' },
+]
+
+const priorityColor: Record<string, string> = {
+  high: 'bg-red-500/20 text-red-400 border-red-500/30',
+  medium: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  low: 'bg-green-500/20 text-green-400 border-green-500/30',
+}
+
+const tagColor: Record<string, string> = {
+  Lead: 'bg-blue-500/20 text-blue-400',
+  'Follow-up': 'bg-purple-500/20 text-purple-400',
+  Task: 'bg-zinc-500/20 text-zinc-400',
+  Proposal: 'bg-cyan-500/20 text-cyan-400',
+  Invoice: 'bg-emerald-500/20 text-emerald-400',
+  Handoff: 'bg-indigo-500/20 text-indigo-400',
+}
+
+function KanbanDemo() {
+  const columns = [
+    { id: 'new', title: 'New', color: '#2563EB', cards: ['1', '2'] },
+    { id: 'progress', title: 'In Progress', color: '#F59E0B', cards: ['3', '4'] },
+    { id: 'review', title: 'Review', color: '#8B5CF6', cards: ['5', '6'] },
+    { id: 'done', title: 'Done', color: '#22C55E', cards: ['7', '8'] },
+  ]
+
+  const [board, setBoard] = useState(columns)
+  const [dragging, setDragging] = useState<string | null>(null)
+
+  const handleDragStart = (cardId: string) => setDragging(cardId)
+
+  const handleDrop = (colId: string) => {
+    if (!dragging) return
+    setBoard(prev =>
+      prev.map(col => ({
+        ...col,
+        cards: col.id === colId
+          ? [...col.cards.filter(c => c !== dragging), dragging]
+          : col.cards.filter(c => c !== dragging),
+      }))
+    )
+    setDragging(null)
+  }
+
+  return (
+    <section className="max-w-7xl mx-auto px-6 pb-24">
+      <div className="text-center mb-10">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-bad-blue/10 border border-bad-blue/20 mb-6">
+          <span className="w-2 h-2 rounded-full bg-bad-blue animate-pulse" />
+          <span className="text-xs font-medium text-bad-blue tracking-wide">Interactive Demo</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+          Try It —{' '}
+          <span className="bg-gradient-to-r from-bad-blue to-blue-400 bg-clip-text text-transparent">
+            Drag Cards Between Columns
+          </span>
+        </h2>
+        <p className="text-bad-gray max-w-2xl mx-auto">
+          This is a live Kanban workflow board. Drag any card to a different column to see how BAD manages tasks, leads, and operations in real time.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {board.map(col => (
+          <div
+            key={col.id}
+            onDragOver={e => e.preventDefault()}
+            onDrop={() => handleDrop(col.id)}
+            className="rounded-xl bg-bad-card/60 border border-bad-border p-4 min-h-[320px]"
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: col.color }} />
+              <h3 className="text-sm font-bold text-bad-light uppercase tracking-wider">{col.title}</h3>
+              <span className="ml-auto text-xs text-bad-gray bg-bad-bg/60 px-2 py-0.5 rounded-full">{col.cards.length}</span>
+            </div>
+            <div className="space-y-3">
+              {col.cards.map(cardId => {
+                const card = demoCards.find(c => c.id === cardId)
+                if (!card) return null
+                return (
+                  <div
+                    key={card.id}
+                    draggable
+                    onDragStart={() => handleDragStart(card.id)}
+                    className={`p-3 rounded-lg bg-bad-bg border border-bad-border hover:border-bad-blue/40 cursor-grab active:cursor-grabbing transition-all ${dragging === card.id ? 'opacity-40 scale-95' : 'opacity-100'}`}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${tagColor[card.tag] || 'bg-zinc-500/20 text-zinc-400'}`}>{card.tag}</span>
+                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${priorityColor[card.priority]}`}>{card.priority}</span>
+                    </div>
+                    <p className="text-xs text-bad-light font-medium leading-snug mb-2">{card.title}</p>
+                    <div className="flex items-center justify-between">
+                      <div className="w-6 h-6 rounded-full bg-bad-blue/20 flex items-center justify-center text-[9px] font-bold text-bad-blue">{card.assignee}</div>
+                      <span className="text-[10px] text-bad-gray">{card.due}</span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p className="text-center text-xs text-bad-gray mt-6">
+        This is how BAD builds workflow systems for your business — custom columns, priorities, assignments, and automation rules tailored to your operations.
+      </p>
+    </section>
+  )
+}
+
 export default function SolutionsPage() {
   return (
     <>
@@ -204,6 +323,9 @@ export default function SolutionsPage() {
           </div>
         ))}
       </section>
+
+      {/* Interactive Kanban Demo */}
+      <KanbanDemo />
 
       {/* CTA */}
       <section className="border-y border-bad-border bg-bad-card/30">
