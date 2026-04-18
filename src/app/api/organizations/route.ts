@@ -1,8 +1,10 @@
 import { NextRequest } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
+import { welcomeEmail } from '@/lib/email/templates';
+import { sendEmail } from '@/lib/email/send';
 
-export async function GET() {
+export async function GET(): Promise<Response> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
@@ -21,7 +23,7 @@ export async function GET() {
   return Response.json({ organization: org });
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<Response> {
   const body = await request.json();
   const { name, user_id, full_name } = body;
 
@@ -39,7 +41,11 @@ export async function POST(request: NextRequest) {
     .select()
     .single();
 
-  if (orgError) return Response.json({ error: orgError.message }, { status: 500 });
+  if (orgError) {
+    // Rollback: delete the orphaned auth user since org creation failed
+    await admin.auth.admin.deleteUser(user_id);
+    return Response.json({ error: 'Failed to create organization. Please try signing up again.' }, { status: 500 });
+  }
 
   // Update or create profile
   const { error: profileError } = await admin
@@ -51,12 +57,24 @@ export async function POST(request: NextRequest) {
       role: 'owner',
     });
 
-  if (profileError) return Response.json({ error: profileError.message }, { status: 500 });
+  if (profileError) {
+    // Rollback: delete org and user since profile creation failed
+    await admin.from('organizations').delete().eq('id', org.id);
+    await admin.auth.admin.deleteUser(user_id);
+    return Response.json({ error: 'Failed to create profile. Please try signing up again.' }, { status: 500 });
+  }
+
+  // Send welcome email
+  const { data: authUser } = await admin.auth.admin.getUserById(user_id);
+  if (authUser?.user?.email) {
+    const welcome = welcomeEmail({ name: full_name || name });
+    await sendEmail({ to: authUser.user.email, subject: welcome.subject, html: welcome.html });
+  }
 
   return Response.json({ organization: org });
 }
 
-export async function PATCH(request: NextRequest) {
+export async function PATCH(request: NextRequest): Promise<Response> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });

@@ -2,23 +2,28 @@ import { NextRequest } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 
-export async function GET() {
+export async function GET(request: NextRequest): Promise<Response> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
+
+  const searchParams = request.nextUrl.searchParams;
+  const limit = Math.min(parseInt(searchParams.get('limit') || '50', 10) || 50, 200);
+  const offset = parseInt(searchParams.get('offset') || '0', 10) || 0;
 
   const admin = createAdminClient();
-  const { data: workflows, error } = await admin
+  const { data: workflows, count, error } = await admin
     .from('workflows')
-    .select('*')
+    .select('*', { count: 'exact' })
     .eq('org_id', profile.org_id)
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: false })
+    .range(offset, offset + limit - 1);
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
-  return Response.json({ workflows: workflows || [] });
+  return Response.json({ workflows: workflows || [], total: count });
 }
 
 export async function POST(request: NextRequest) {
@@ -27,7 +32,7 @@ export async function POST(request: NextRequest) {
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const body = await request.json();
   const admin = createAdminClient();
@@ -68,7 +73,7 @@ export async function PATCH(request: NextRequest) {
   if (!body.id) return Response.json({ error: 'Workflow ID required' }, { status: 400 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const admin = createAdminClient();
   const updates: Record<string, unknown> = {};
@@ -99,7 +104,7 @@ export async function DELETE(request: NextRequest) {
   if (!body.id) return Response.json({ error: 'Workflow ID required' }, { status: 400 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const admin = createAdminClient();
 

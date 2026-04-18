@@ -2,34 +2,37 @@ import { NextRequest } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<Response> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const searchParams = request.nextUrl.searchParams;
   const startDate = searchParams.get('start');
   const endDate = searchParams.get('end');
   const status = searchParams.get('status');
+  const limit = Math.min(parseInt(searchParams.get('limit') || '50', 10) || 50, 200);
+  const offset = parseInt(searchParams.get('offset') || '0', 10) || 0;
 
   const admin = createAdminClient();
   let query = admin
     .from('bookings')
-    .select('*')
+    .select('*', { count: 'exact' })
     .eq('org_id', profile.org_id)
-    .order('start_time', { ascending: true });
+    .order('start_time', { ascending: true })
+    .range(offset, offset + limit - 1);
 
   if (startDate) query = query.gte('start_time', startDate);
   if (endDate) query = query.lte('start_time', endDate);
   if (status) query = query.eq('status', status);
 
-  const { data: bookings, error } = await query;
+  const { data: bookings, count, error } = await query;
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
-  return Response.json({ bookings: bookings || [] });
+  return Response.json({ bookings: bookings || [], total: count });
 }
 
 export async function POST(request: NextRequest) {
@@ -38,7 +41,7 @@ export async function POST(request: NextRequest) {
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const body = await request.json();
   const admin = createAdminClient();
@@ -84,7 +87,7 @@ export async function PATCH(request: NextRequest) {
   if (!body.id) return Response.json({ error: 'Booking ID required' }, { status: 400 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const admin = createAdminClient();
   const updates: Record<string, unknown> = {};
@@ -130,7 +133,7 @@ export async function DELETE(request: NextRequest) {
   if (!body.id) return Response.json({ error: 'Booking ID required' }, { status: 400 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const admin = createAdminClient();
   const { error } = await admin

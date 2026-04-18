@@ -16,7 +16,7 @@ const BRAND = {
   border: '#1E293B',
   gray: '#94A3B8',
   light: '#F1F5F9',
-  email: 'tracy@badsaas.app',
+  email: process.env.CONTACT_EMAIL || 'tracy@badsaas.app',
   phone: '(479) 670-6073',
 };
 

@@ -1,10 +1,11 @@
 import { NextRequest } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ formId: string }> }
-) {
+): Promise<Response> {
   const { formId } = await params;
   const admin = createAdminClient();
 
@@ -19,20 +20,33 @@ export async function GET(
     return Response.json({ error: 'Form not found or inactive' }, { status: 404 });
   }
 
-  // Get org name for branding
+  // Verify org exists (#11)
   const { data: org } = await admin
     .from('organizations')
     .select('name')
     .eq('id', form.org_id)
     .single();
 
-  return Response.json({ form, orgName: org?.name || '' });
+  if (!org) {
+    return Response.json({ error: 'Form organization not found' }, { status: 404 });
+  }
+
+  return Response.json({ form, orgName: org.name || '' });
 }
 
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ formId: string }> }
-) {
+): Promise<Response> {
+  // Rate limit (#20)
+  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+  if (!checkRateLimit(ip, 20)) {
+    return Response.json(
+      { error: 'Too many submissions. Please try again later.' },
+      { status: 429 }
+    );
+  }
+
   const { formId } = await params;
   const admin = createAdminClient();
 
@@ -48,6 +62,17 @@ export async function POST(
     return Response.json({ error: 'Form not found or inactive' }, { status: 404 });
   }
 
+  // Verify org exists (#11)
+  const { data: org } = await admin
+    .from('organizations')
+    .select('id')
+    .eq('id', form.org_id)
+    .single();
+
+  if (!org) {
+    return Response.json({ error: 'Form organization not found' }, { status: 404 });
+  }
+
   const body = await request.json();
   const submissionData = body.data || {};
 
@@ -60,15 +85,18 @@ export async function POST(
     const val = submissionData[field.id];
     if (typeof val !== 'string') continue;
 
-    if (field.type === 'email' && val) leadEmail = val;
-    if (field.type === 'phone' && val) leadPhone = val;
-    if (field.type === 'text' && field.label.toLowerCase().includes('name') && val) {
-      leadName = val;
+    // Sanitize (#23-25)
+    const sanitized = val.replace(/[<>]/g, '').trim().slice(0, 2000);
+
+    if (field.type === 'email' && sanitized) leadEmail = sanitized;
+    if (field.type === 'phone' && sanitized) leadPhone = sanitized;
+    if (field.type === 'text' && field.label.toLowerCase().includes('name') && sanitized) {
+      leadName = sanitized;
     }
   }
 
-  // Create lead
-  const { data: lead } = await admin
+  // Create lead -- check for success before continuing (#7)
+  const { data: lead, error: leadError } = await admin
     .from('leads')
     .insert({
       org_id: form.org_id,
@@ -83,13 +111,17 @@ export async function POST(
     .select()
     .single();
 
+  if (leadError || !lead) {
+    return Response.json({ error: 'Failed to create lead from submission' }, { status: 500 });
+  }
+
   // Create form submission
   const { error: subError } = await admin
     .from('form_submissions')
     .insert({
       form_id: form.id,
       org_id: form.org_id,
-      lead_id: lead?.id || null,
+      lead_id: lead.id,
       data: submissionData,
     });
 
@@ -103,7 +135,7 @@ export async function POST(
     type: 'form_submitted',
     title: `Form submission: ${form.name}`,
     description: leadEmail || leadName,
-    metadata: { form_id: form.id, lead_id: lead?.id },
+    metadata: { form_id: form.id, lead_id: lead.id },
     actor_id: null,
   });
 

@@ -153,9 +153,12 @@ export async function POST(request: NextRequest) {
 </body>
 </html>`;
 
+  const filename = `quote-${quote.id.slice(0, 8).toUpperCase()}.html`;
+
   return new Response(html, {
     headers: {
       'Content-Type': 'text/html',
+      'Content-Disposition': `attachment; filename="${filename}"`,
     },
   });
 }

@@ -2,48 +2,77 @@ import { NextRequest } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<Response> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const searchParams = request.nextUrl.searchParams;
   const workflowId = searchParams.get('workflow_id');
   const status = searchParams.get('status');
   const assignee = searchParams.get('assignee');
   const priority = searchParams.get('priority');
+  const limit = Math.min(parseInt(searchParams.get('limit') || '50', 10) || 50, 200);
+  const offset = parseInt(searchParams.get('offset') || '0', 10) || 0;
 
   const admin = createAdminClient();
   let query = admin
     .from('workflow_items')
-    .select('*')
+    .select('*', { count: 'exact' })
     .eq('org_id', profile.org_id)
-    .order('position', { ascending: true });
+    .order('position', { ascending: true })
+    .range(offset, offset + limit - 1);
 
   if (workflowId) query = query.eq('workflow_id', workflowId);
   if (status) query = query.eq('status', status);
   if (assignee) query = query.eq('assigned_to', assignee);
   if (priority) query = query.eq('priority', priority);
 
-  const { data: items, error } = await query;
+  const { data: items, count, error } = await query;
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
-  return Response.json({ items: items || [] });
+  return Response.json({ items: items || [], total: count });
 }
 
-export async function POST(request: NextRequest) {
+const ALLOWED_PRIORITIES = ['low', 'medium', 'high', 'urgent'];
+
+export async function POST(request: NextRequest): Promise<Response> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const body = await request.json();
   const admin = createAdminClient();
+
+  // Validate status against workflow's allowed statuses (#15)
+  if (body.workflow_id && body.status) {
+    const { data: workflow } = await admin
+      .from('workflows')
+      .select('statuses')
+      .eq('id', body.workflow_id)
+      .eq('org_id', profile.org_id)
+      .single();
+
+    if (workflow?.statuses && !workflow.statuses.includes(body.status)) {
+      return Response.json(
+        { error: `Invalid status "${body.status}". Allowed: ${workflow.statuses.join(', ')}` },
+        { status: 400 }
+      );
+    }
+  }
+
+  if (body.priority && !ALLOWED_PRIORITIES.includes(body.priority)) {
+    return Response.json(
+      { error: `Invalid priority "${body.priority}". Allowed: ${ALLOWED_PRIORITIES.join(', ')}` },
+      { status: 400 }
+    );
+  }
 
   // Get max position for the target status column
   const { data: existing } = await admin
@@ -88,7 +117,7 @@ export async function POST(request: NextRequest) {
   return Response.json({ item });
 }
 
-export async function PATCH(request: NextRequest) {
+export async function PATCH(request: NextRequest): Promise<Response> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
@@ -97,9 +126,43 @@ export async function PATCH(request: NextRequest) {
   if (!body.id) return Response.json({ error: 'Item ID required' }, { status: 400 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const admin = createAdminClient();
+
+  // Validate status if being updated (#15)
+  if (body.status !== undefined) {
+    // Get the item's workflow to check allowed statuses
+    const { data: item } = await admin
+      .from('workflow_items')
+      .select('workflow_id')
+      .eq('id', body.id)
+      .eq('org_id', profile.org_id)
+      .single();
+
+    if (item) {
+      const { data: workflow } = await admin
+        .from('workflows')
+        .select('statuses')
+        .eq('id', item.workflow_id)
+        .single();
+
+      if (workflow?.statuses && !workflow.statuses.includes(body.status)) {
+        return Response.json(
+          { error: `Invalid status "${body.status}". Allowed: ${workflow.statuses.join(', ')}` },
+          { status: 400 }
+        );
+      }
+    }
+  }
+
+  if (body.priority !== undefined && !ALLOWED_PRIORITIES.includes(body.priority)) {
+    return Response.json(
+      { error: `Invalid priority "${body.priority}". Allowed: ${ALLOWED_PRIORITIES.join(', ')}` },
+      { status: 400 }
+    );
+  }
+
   const updates: Record<string, unknown> = {};
   if (body.title !== undefined) updates.title = body.title;
   if (body.description !== undefined) updates.description = body.description;
@@ -146,7 +209,7 @@ export async function DELETE(request: NextRequest) {
   if (!body.id) return Response.json({ error: 'Item ID required' }, { status: 400 });
 
   const { data: profile } = await supabase.from('profiles').select('org_id').eq('id', user.id).single();
-  if (!profile?.org_id) return Response.json({ error: 'No organization' }, { status: 400 });
+  if (!profile?.org_id) return Response.json({ error: 'No organization found. Complete signup first.' }, { status: 403 });
 
   const admin = createAdminClient();
   const { error } = await admin

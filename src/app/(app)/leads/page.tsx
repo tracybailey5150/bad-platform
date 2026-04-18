@@ -90,6 +90,7 @@ export default function LeadsPage() {
     const ids = Array.from(selectedIds);
 
     if (action === 'delete') {
+      if (!confirm(`Delete ${ids.length} lead${ids.length > 1 ? 's' : ''}? This cannot be undone.`)) return;
       for (const id of ids) {
         await fetch('/api/leads', {
           method: 'DELETE',

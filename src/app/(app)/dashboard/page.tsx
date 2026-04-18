@@ -39,20 +39,24 @@ export default function DashboardPage() {
   const [workflowDist, setWorkflowDist] = useState<{ name: string; value: number }[]>([]);
   const [activity, setActivity] = useState<ActivityEvent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState('');
 
   useEffect(() => {
     async function fetchDashboard() {
       try {
         const res = await fetch('/api/dashboard');
-        if (res.ok) {
-          const data = await res.json();
-          setKpis(data.kpis);
-          setLeadVolume(data.leadVolume);
-          setWorkflowDist(data.workflowDistribution);
-          setActivity(data.recentActivity);
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          setFetchError(data.error || 'Failed to load dashboard data');
+          return;
         }
+        const data = await res.json();
+        setKpis(data.kpis);
+        setLeadVolume(data.leadVolume);
+        setWorkflowDist(data.workflowDistribution);
+        setActivity(data.recentActivity);
       } catch {
-        // Dashboard data fetch failed silently
+        setFetchError('Failed to connect to the server. Please refresh the page.');
       } finally {
         setLoading(false);
       }
@@ -85,6 +89,15 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
+      {fetchError && (
+        <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center gap-3">
+          <svg className="w-5 h-5 text-red-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+          </svg>
+          <p className="text-sm text-red-400">{fetchError}</p>
+        </div>
+      )}
+
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpiCards.map((kpi) => (

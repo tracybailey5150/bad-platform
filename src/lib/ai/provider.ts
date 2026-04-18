@@ -20,13 +20,13 @@ const FAST_ACTIONS: AIAction[] = ['summarize', 'route'];
 const QUALITY_ACTIONS: AIAction[] = ['draft_reply', 'search'];
 
 function getAnthropicModel(action: AIAction): string {
-  if (FAST_ACTIONS.includes(action)) return 'claude-haiku-4-5-20241022';
-  return 'claude-sonnet-4-6-20250514';
+  if (FAST_ACTIONS.includes(action)) return process.env.ANTHROPIC_MODEL_FAST || 'claude-haiku-4-5-20241022';
+  return process.env.ANTHROPIC_MODEL_QUALITY || 'claude-sonnet-4-6-20250514';
 }
 
 function getOpenAIModel(action: AIAction): string {
-  if (FAST_ACTIONS.includes(action)) return 'gpt-4o-mini';
-  return 'gpt-4o';
+  if (FAST_ACTIONS.includes(action)) return process.env.OPENAI_MODEL_FAST || 'gpt-4o-mini';
+  return process.env.OPENAI_MODEL_QUALITY || 'gpt-4o';
 }
 
 async function callAnthropic(request: AIRequest): Promise<AIResponse> {
