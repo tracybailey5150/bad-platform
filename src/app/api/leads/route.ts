@@ -64,7 +64,7 @@ export async function GET(request: NextRequest): Promise<Response> {
   const { data: leads, count, error } = await query;
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
-  return Response.json({ leads: leads || [], total: count } satisfies LeadsListResponse);
+  return Response.json({ leads: leads || [], total: count ?? undefined } satisfies LeadsListResponse);
 }
 
 export async function POST(request: NextRequest): Promise<Response> {
