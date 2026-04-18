@@ -190,12 +190,20 @@ export default function LandingPage() {
               </a>
             ))}
           </div>
-          <a
-            href="/contact"
-            className="px-5 py-2 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-colors"
-          >
-            Book a Call
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="/login"
+              className="px-5 py-2 text-sm font-semibold border border-bad-border text-bad-light hover:border-bad-blue/40 hover:bg-bad-card rounded-lg transition-colors"
+            >
+              Sign In
+            </a>
+            <a
+              href="/contact"
+              className="px-5 py-2 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-colors"
+            >
+              Book a Call
+            </a>
+          </div>
         </div>
       </nav>
 
