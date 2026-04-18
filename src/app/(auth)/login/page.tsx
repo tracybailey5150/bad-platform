@@ -38,7 +38,10 @@ function LoginForm() {
 
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-8">
-      <h2 className="text-xl font-semibold text-zinc-100 mb-6">Sign in to your account</h2>
+      <div className="flex justify-center mb-6">
+        <img src="/bad-logo.png" alt="BAD" className="h-14" />
+      </div>
+      <h2 className="text-xl font-semibold text-zinc-100 mb-6 text-center">Sign in to your account</h2>
 
       {error && (
         <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-sm text-red-400">
