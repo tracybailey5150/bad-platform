@@ -238,6 +238,38 @@ export default function DashboardPage() {
           </div>
         </Card>
       </div>
+
+      {/* Starter Kit Docs */}
+      <Card>
+        <CardTitle>Starter Kit Documentation</CardTitle>
+        <p className="text-xs text-zinc-500 mt-1 mb-4">BAD client deployment guides and references</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {[
+            { title: 'New Client Setup', desc: 'Step-by-step client onboarding', href: 'https://github.com/tracybailey5150/bad-templates/blob/master/docs/NEW_CLIENT_SETUP.md', icon: 'M12 4v16m8-8H4' },
+            { title: 'Client Handoff', desc: 'Ownership, credentials, support tiers', href: 'https://github.com/tracybailey5150/bad-templates/blob/master/docs/CLIENT_HANDOFF.md', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
+            { title: 'Deployment Guide', desc: 'Supabase, Vercel, domain setup', href: 'https://github.com/tracybailey5150/bad-templates/blob/master/docs/DEPLOYMENT.md', icon: 'M5 12h14M12 5l7 7-7 7' },
+            { title: 'Admin Guide', desc: 'Branding, modules, roles, settings', href: 'https://github.com/tracybailey5150/bad-templates/blob/master/docs/ADMIN_GUIDE.md', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z' },
+            { title: 'Upgrade Policy', desc: 'How client upgrades work', href: 'https://github.com/tracybailey5150/bad-templates/blob/master/docs/UPGRADE_POLICY.md', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' },
+            { title: 'Starter Kit Repo', desc: 'Full source code and README', href: 'https://github.com/tracybailey5150/bad-templates', icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4' },
+          ].map((doc) => (
+            <a
+              key={doc.title}
+              href={doc.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 p-3 rounded-lg border border-zinc-800 hover:border-indigo-500/30 hover:bg-zinc-800/50 transition-all group"
+            >
+              <svg className="w-5 h-5 text-zinc-500 group-hover:text-indigo-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d={doc.icon} />
+              </svg>
+              <div>
+                <p className="text-sm font-medium text-zinc-200 group-hover:text-indigo-400 transition-colors">{doc.title}</p>
+                <p className="text-xs text-zinc-500 mt-0.5">{doc.desc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </Card>
     </div>
   );
 }
