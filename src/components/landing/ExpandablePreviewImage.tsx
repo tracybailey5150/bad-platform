@@ -24,7 +24,7 @@ export function ExpandablePreviewImage({
         role="button"
         tabIndex={0}
         aria-label={`${viewLabel} - ${modalTitle}`}
-        className="group/preview relative w-full rounded-2xl overflow-hidden border border-bad-border bg-bad-card cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bad-blue focus-visible:ring-offset-2 focus-visible:ring-offset-bad-bg"
+        className="group/preview relative w-full rounded-2xl overflow-hidden border border-bad-border hover:border-bad-blue/40 bg-bad-card cursor-pointer transition-all duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bad-blue focus-visible:ring-offset-2 focus-visible:ring-offset-bad-bg hover:shadow-[0_0_80px_rgba(37,99,235,0.15),0_20px_60px_rgba(0,0,0,0.4)]"
         style={{ boxShadow: '0 0 60px rgba(37, 99, 235, 0.06)' }}
         onClick={() => setOpen(true)}
         onKeyDown={(e) => {
@@ -39,7 +39,7 @@ export function ExpandablePreviewImage({
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="w-full h-auto block transition-transform duration-500 ease-out group-hover/preview:scale-[1.04]"
+            className="w-full h-auto block transition-all duration-500 ease-out group-hover/preview:scale-[1.08] group-hover/preview:brightness-110 group-hover/preview:contrast-[1.05]"
           />
         </div>
 
