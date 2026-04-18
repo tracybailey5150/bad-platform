@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { WhatWeBuildSection } from '@/components/landing/WhatWeBuildSection';
 
 /* ------------------------------------------------------------------ */
 /*  Icons (inline SVG)                                                 */
@@ -36,45 +37,6 @@ function RocketIcon() {
   );
 }
 
-function InboxIcon() {
-  return (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-    </svg>
-  );
-}
-
-function WorkflowIcon() {
-  return (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-    </svg>
-  );
-}
-
-function CalendarIcon() {
-  return (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-    </svg>
-  );
-}
-
-function DashboardIcon() {
-  return (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-    </svg>
-  );
-}
-
-function BrainIcon() {
-  return (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-    </svg>
-  );
-}
 
 /* ------------------------------------------------------------------ */
 /*  Dashboard Mockup Component (preserved, not rendered)               */
@@ -148,41 +110,6 @@ function DashboardMockup() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Solutions data                                                     */
-/* ------------------------------------------------------------------ */
-const solutions = [
-  {
-    title: 'Lead Response & Automation',
-    desc: 'Capture, qualify, score, and route leads the moment they come in. AI-powered follow-up sequences and smart intake forms that never let a prospect slip through the cracks.',
-    bullets: ['Instant lead capture & routing', 'AI-drafted follow-up emails', 'Smart scoring & prioritization', 'CRM integration'],
-    icon: <InboxIcon />,
-  },
-  {
-    title: 'Workflow & Operations',
-    desc: 'Replace spreadsheets and manual tracking with custom workflow systems built around how your team actually works. Tasks, approvals, status boards, and automated handoffs.',
-    bullets: ['Custom task management', 'Automated approval chains', 'Real-time status boards', 'Team notification flows'],
-    icon: <WorkflowIcon />,
-  },
-  {
-    title: 'Scheduling & Intake',
-    desc: 'Client-facing booking pages, custom intake forms, automated reminders, and calendar management. All branded to your business, all connected to your systems.',
-    bullets: ['Branded booking pages', 'Custom intake forms', 'Automated reminders & confirmations', 'Calendar sync'],
-    icon: <CalendarIcon />,
-  },
-  {
-    title: 'Dashboards, Reporting & Analytics',
-    desc: 'Real-time KPIs, operational dashboards, analytics, and reporting platforms that give owners and managers actual visibility into what matters — trends, performance, and where to focus next.',
-    bullets: ['Real-time KPI tracking & analytics', 'Trend analysis & forecasting', 'Custom report builders', 'Team performance & revenue views'],
-    icon: <DashboardIcon />,
-  },
-  {
-    title: 'AI Integration & Consulting',
-    desc: 'Strategic AI integration that actually makes sense for your business. Not chatbot gimmicks -- real AI that drafts proposals, extracts data, routes work, and saves hours.',
-    bullets: ['Document & data extraction', 'AI-drafted communications', 'Intelligent routing & triage', 'Workflow recommendations'],
-    icon: <BrainIcon />,
-  },
-];
 
 /* ------------------------------------------------------------------ */
 /*  Portfolio data                                                     */
@@ -442,59 +369,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Solutions ────────────────────────────────────────────── */}
-      <section id="solutions" className="bg-bad-card/30 border-y border-bad-border">
-        <div className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
-          <div className="max-w-3xl mx-auto text-center mb-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5">
-              What We Build
-            </h2>
-            <p className="text-lg text-bad-gray">
-              From lead capture to AI integration, we build complete systems that replace manual work and disconnected tools.
-            </p>
-          </div>
-
-          <div className="space-y-20 lg:space-y-28">
-            {solutions.map((s, i) => (
-              <div
-                key={s.title}
-                className={`flex flex-col gap-10 lg:gap-16 items-center ${
-                  i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                }`}
-              >
-                {/* Text side */}
-                <div className="flex-1">
-                  <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-bad-blue/10 text-bad-blue mb-6">
-                    {s.icon}
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-bad-light mb-4">{s.title}</h3>
-                  <p className="text-bad-gray leading-relaxed mb-6">{s.desc}</p>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {s.bullets.map((b) => (
-                      <li key={b} className="flex items-center gap-2.5 text-sm text-bad-light/80">
-                        <svg className="w-4 h-4 text-bad-blue flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                {/* Visual side */}
-                <div className="flex-1 w-full max-w-md">
-                  <div
-                    className="w-full aspect-[4/3] rounded-2xl bg-bad-card border border-bad-border flex items-center justify-center"
-                    style={{ boxShadow: '0 0 60px rgba(37, 99, 235, 0.06)' }}
-                  >
-                    <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-bad-blue/10 text-bad-blue scale-150">
-                      {s.icon}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WhatWeBuildSection />
 
       {/* ── How We Work ──────────────────────────────────────────── */}
       <section id="how-we-work" className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
