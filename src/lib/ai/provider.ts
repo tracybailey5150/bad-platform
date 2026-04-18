@@ -1,6 +1,6 @@
 // AI Provider Abstraction
-// Routes by use case: fast tasks -> haiku, quality tasks -> sonnet
-// Falls back to OpenAI if Anthropic unavailable
+// Cascade: Opus 4 -> Sonnet 4.6 -> OpenAI o4-mini
+// Falls through on failure at each tier
 
 export type AIAction = 'summarize' | 'draft_reply' | 'route' | 'search';
 
@@ -16,24 +16,16 @@ interface AIResponse {
   provider: 'anthropic' | 'openai';
 }
 
-const FAST_ACTIONS: AIAction[] = ['summarize', 'route'];
-const QUALITY_ACTIONS: AIAction[] = ['draft_reply', 'search'];
+const ANTHROPIC_MODELS = [
+  process.env.ANTHROPIC_MODEL_PRIMARY || 'claude-opus-4-0-20250514',
+  process.env.ANTHROPIC_MODEL_FALLBACK || 'claude-sonnet-4-6-20250514',
+];
 
-function getAnthropicModel(action: AIAction): string {
-  if (FAST_ACTIONS.includes(action)) return process.env.ANTHROPIC_MODEL_FAST || 'claude-haiku-4-5-20241022';
-  return process.env.ANTHROPIC_MODEL_QUALITY || 'claude-sonnet-4-6-20250514';
-}
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'o4-mini';
 
-function getOpenAIModel(action: AIAction): string {
-  if (FAST_ACTIONS.includes(action)) return process.env.OPENAI_MODEL_FAST || 'gpt-4o-mini';
-  return process.env.OPENAI_MODEL_QUALITY || 'gpt-4o';
-}
-
-async function callAnthropic(request: AIRequest): Promise<AIResponse> {
+async function callAnthropic(request: AIRequest, model: string): Promise<AIResponse> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error('ANTHROPIC_API_KEY not set');
-
-  const model = getAnthropicModel(request.action);
 
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -44,7 +36,7 @@ async function callAnthropic(request: AIRequest): Promise<AIResponse> {
     },
     body: JSON.stringify({
       model,
-      max_tokens: 2048,
+      max_tokens: 4096,
       system: request.systemPrompt || 'You are a helpful business assistant.',
       messages: [{ role: 'user', content: request.prompt }],
     }),
@@ -52,7 +44,7 @@ async function callAnthropic(request: AIRequest): Promise<AIResponse> {
 
   if (!res.ok) {
     const err = await res.text();
-    throw new Error(`Anthropic API error: ${res.status} ${err}`);
+    throw new Error(`Anthropic API error (${model}): ${res.status} ${err}`);
   }
 
   const data = await res.json();
@@ -65,7 +57,7 @@ async function callOpenAI(request: AIRequest): Promise<AIResponse> {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error('OPENAI_API_KEY not set');
 
-  const model = getOpenAIModel(request.action);
+  const model = OPENAI_MODEL;
 
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -75,7 +67,7 @@ async function callOpenAI(request: AIRequest): Promise<AIResponse> {
     },
     body: JSON.stringify({
       model,
-      max_tokens: 2048,
+      max_tokens: 4096,
       messages: [
         { role: 'system', content: request.systemPrompt || 'You are a helpful business assistant.' },
         { role: 'user', content: request.prompt },
@@ -95,21 +87,21 @@ async function callOpenAI(request: AIRequest): Promise<AIResponse> {
 }
 
 export async function callAI(request: AIRequest): Promise<AIResponse> {
-  // Try Anthropic first
+  // Tier 1 & 2: Anthropic Opus -> Sonnet
   if (process.env.ANTHROPIC_API_KEY) {
-    try {
-      return await callAnthropic(request);
-    } catch {
-      // Fall through to OpenAI
+    for (const model of ANTHROPIC_MODELS) {
+      try {
+        return await callAnthropic(request, model);
+      } catch {
+        // Fall through to next model
+      }
     }
   }
 
-  // Fallback to OpenAI
+  // Tier 3: OpenAI o4-mini
   if (process.env.OPENAI_API_KEY) {
     return await callOpenAI(request);
   }
 
   throw new Error('No AI provider configured. Set ANTHROPIC_API_KEY or OPENAI_API_KEY.');
 }
-
-void QUALITY_ACTIONS;
