@@ -17,11 +17,11 @@ interface AIResponse {
 }
 
 const ANTHROPIC_MODELS = [
-  process.env.ANTHROPIC_MODEL_PRIMARY || 'claude-opus-4-0-20250514',
+  process.env.ANTHROPIC_MODEL_PRIMARY || 'claude-opus-4-6-20250618',
   process.env.ANTHROPIC_MODEL_FALLBACK || 'claude-sonnet-4-6-20250514',
 ];
 
-const OPENAI_MODEL = process.env.OPENAI_MODEL || 'o4-mini';
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-5.4';
 
 async function callAnthropic(request: AIRequest, model: string): Promise<AIResponse> {
   const apiKey = process.env.ANTHROPIC_API_KEY;
