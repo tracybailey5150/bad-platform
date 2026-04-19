@@ -38,10 +38,17 @@ const projects = [
   },
   {
     name: 'HookVault',
-    description: 'Music catalog, creator tools, and radio platform. Project builder for music producers with licensing management and distribution workflows.',
+    description: 'An entertainment and creative licensing platform built for managing and presenting digital assets, with media-focused tools for image, video, audio, and creator workflows.',
     url: 'https://hookvault.app',
-    tag: 'Music / Media',
+    tag: 'Creative Platform',
     stack: ['Next.js', 'Supabase', 'Audio Streaming', 'Stripe'],
+  },
+  {
+    name: 'expNWA',
+    description: 'A local real estate and lifestyle website built as a public-facing platform for branding, regional content, discovery, and lead generation.',
+    url: 'https://expnwa.com',
+    tag: 'Public-Facing',
+    stack: ['Next.js', 'Supabase', 'SEO', 'Lead Capture'],
   },
 ];
 

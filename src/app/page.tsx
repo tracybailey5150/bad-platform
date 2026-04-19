@@ -135,6 +135,16 @@ const portfolio = [
     desc: 'Digital signage content operations platform for enterprise display networks.',
     tag: 'Digital Signage',
   },
+  {
+    name: 'HookVault',
+    desc: 'An entertainment and creative licensing platform built for managing and presenting digital assets, with media-focused tools for image, video, audio, and creator workflows.',
+    tag: 'Creative Platform',
+  },
+  {
+    name: 'expNWA',
+    desc: 'A local real estate and lifestyle website built as a public-facing platform for branding, regional content, discovery, and lead generation.',
+    tag: 'Public-Facing',
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -246,7 +256,7 @@ export default function LandingPage() {
               Actually Needs
             </h1>
             <p className="mt-7 text-lg lg:text-xl text-bad-gray max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              We consult and build custom workflows for executives, multi-business owners, and small to medium-size businesses. Custom software, workflow automation, AI integration, and consulting for organizations tired of duct-taping spreadsheets and disconnected tools together.
+              From internal dashboards and workflow automation to branded websites, creative platforms, and media tools, BAD builds connected systems that save time, reduce software sprawl, and improve how businesses operate and present themselves.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4">
               <a
@@ -378,6 +388,21 @@ export default function LandingPage() {
 
       {/* ── Solutions ────────────────────────────────────────────── */}
       <WhatWeBuildSection />
+
+      {/* ── Bridge: Backend to Brand ─────────────────────────────── */}
+      <section className="max-w-7xl mx-auto px-6 py-20 lg:py-24">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight mb-6">
+            Connected from{' '}
+            <span className="bg-gradient-to-r from-bad-blue to-blue-400 bg-clip-text text-transparent">
+              Backend to Brand
+            </span>
+          </h2>
+          <p className="text-lg text-bad-gray leading-relaxed">
+            BAD doesn&apos;t just build internal systems. We also build the public-facing tools that connect to them -- from websites and lead capture pages to creative platforms and content utilities. That means clients can have their operations, automation, and customer-facing experience built as one connected system instead of paying for separate disconnected tools.
+          </p>
+        </div>
+      </section>
 
       {/* ── How We Work ──────────────────────────────────────────── */}
       <section id="how-we-work" className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
