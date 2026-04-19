@@ -282,7 +282,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
               { value: '12+', label: 'Custom Platforms Built' },
-              { value: '146k+', label: 'Lines of Production Code' },
+              { value: '200k+', label: 'Lines of Production Code' },
               { value: '6', label: 'Industries Served' },
               { value: 'AI', label: 'Powered Workflows' },
             ].map((m) => (
