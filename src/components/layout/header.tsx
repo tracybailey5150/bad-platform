@@ -203,13 +203,6 @@ export function Header({ title = 'Dashboard', orgName = '', userName = '' }: Hea
               >
                 Settings
               </Link>
-              <Link
-                href="/billing"
-                onClick={() => setDropdownOpen(false)}
-                className="block px-4 py-2 text-sm text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors"
-              >
-                Billing
-              </Link>
               <button
                 onClick={handleLogout}
                 className="w-full text-left px-4 py-2 text-sm text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors"
