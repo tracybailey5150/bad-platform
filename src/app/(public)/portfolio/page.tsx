@@ -88,14 +88,6 @@ const projects = [
     stack: ['Next.js', 'Supabase', 'Vercel', 'Tailwind', 'SEO'],
     logo: '/portfolio/expnwa.png',
   },
-  {
-    name: 'Control Center',
-    description: 'AI orchestration dashboard managing all projects — deploy controls, health monitoring, revenue tracking, Telegram bot integration, asset library, and real-time activity feeds.',
-    url: 'https://tracybailey5150.com',
-    tag: 'Orchestration',
-    stack: ['Next.js 14', 'Supabase', 'Stripe', 'Recharts', 'OpenAI'],
-    logo: null,
-  },
 ];
 
 export default function PortfolioPage() {
