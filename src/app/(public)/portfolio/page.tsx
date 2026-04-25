@@ -70,7 +70,7 @@ const projects = [
     url: 'https://lessonpilot.org',
     tag: 'EdTech',
     stack: ['Next.js', 'Supabase', 'RAG', 'AI/LLM', 'Stripe'],
-    logo: null,
+    logo: '/portfolio/lessonpilot.png',
   },
   {
     name: 'SocialPilot',
@@ -78,7 +78,7 @@ const projects = [
     url: 'https://socialpilot.org',
     tag: 'Social Media',
     stack: ['Next.js', 'Supabase', 'Facebook API', 'YouTube API', 'AI'],
-    logo: null,
+    logo: '/portfolio/socialpilot.png',
   },
   {
     name: 'expNWA',
