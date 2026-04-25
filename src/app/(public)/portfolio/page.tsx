@@ -14,7 +14,7 @@ const projects = [
     url: 'https://aiagentpilot.org',
     tag: 'Lead Automation',
     stack: ['Next.js', 'Supabase', 'AI/LLM', 'Tailwind CSS'],
-    logo: null,
+    logo: '/portfolio/agentpilot.png',
   },
   {
     name: 'DFO Platform',
