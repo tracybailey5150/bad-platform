@@ -14,6 +14,7 @@ const projects = [
     url: 'https://aiagentpilot.org',
     tag: 'Lead Automation',
     stack: ['Next.js', 'Supabase', 'AI/LLM', 'Tailwind CSS'],
+    logo: null,
   },
   {
     name: 'DFO Platform',
@@ -21,6 +22,7 @@ const projects = [
     url: 'https://dailyfieldops.com',
     tag: 'Field Ops',
     stack: ['Next.js', 'Supabase', 'PDF Generation', 'Real-time'],
+    logo: '/portfolio/dfo.png',
   },
   {
     name: 'AV Orchestrator',
@@ -28,6 +30,7 @@ const projects = [
     url: 'https://avorchestrator.com',
     tag: 'Enterprise AV',
     stack: ['Next.js', 'Supabase', 'IoT Integration', 'Tailwind CSS'],
+    logo: '/portfolio/av-orchestrator.png',
   },
   {
     name: 'DSD Platform',
@@ -35,6 +38,7 @@ const projects = [
     url: 'https://dsdpilot.com',
     tag: 'Digital Signage',
     stack: ['Next.js', 'Supabase', 'Content Management', 'Scheduling'],
+    logo: '/portfolio/dsd.png',
   },
   {
     name: 'HookVault',
@@ -42,6 +46,7 @@ const projects = [
     url: 'https://hookvault.app',
     tag: 'Creative Platform',
     stack: ['Next.js', 'Supabase', 'Audio Streaming', 'Stripe'],
+    logo: '/portfolio/hookvault.png',
   },
   {
     name: 'expNWA',
@@ -49,6 +54,7 @@ const projects = [
     url: 'https://expnwa.com',
     tag: 'Public-Facing',
     stack: ['Next.js', 'Supabase', 'SEO', 'Lead Capture'],
+    logo: '/portfolio/expnwa.png',
   },
 ];
 
@@ -82,16 +88,24 @@ export default function PortfolioPage() {
               className="group rounded-2xl bg-bad-card border border-bad-border hover:border-bad-blue/30 transition-all overflow-hidden"
               style={{ boxShadow: '0 0 40px rgba(37, 99, 235, 0.03)' }}
             >
-              {/* Screenshot placeholder */}
-              <div className="aspect-video bg-bad-bg border-b border-bad-border flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-bad-blue/10 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-bad-blue">
-                      {p.name.charAt(0)}
-                    </span>
+              {/* Project Logo */}
+              <div className="aspect-video bg-bad-bg border-b border-bad-border flex items-center justify-center overflow-hidden group-hover:border-bad-blue/20 transition-all">
+                {p.logo ? (
+                  <img
+                    src={p.logo}
+                    alt={`${p.name} logo`}
+                    className="w-full h-full object-contain p-8 transition-all duration-500 ease-out group-hover:scale-[1.06] group-hover:brightness-110"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-bad-blue/10 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-bad-blue">
+                        {p.name.charAt(0)}
+                      </span>
+                    </div>
+                    <p className="text-xs text-bad-gray/60">{p.url.replace('https://', '')}</p>
                   </div>
-                  <p className="text-xs text-bad-gray/60">{p.url.replace('https://', '')}</p>
-                </div>
+                )}
               </div>
 
               {/* Content */}
