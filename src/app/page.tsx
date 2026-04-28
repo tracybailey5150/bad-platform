@@ -482,36 +482,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Tracy Bailey ─────────────────────────────────────────── */}
-      <section id="about" className="max-w-7xl mx-auto px-6 py-24 lg:py-32">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-16">
-          {/* Avatar / Initials */}
-          <div className="flex-shrink-0">
-            <div className="w-36 h-36 rounded-full bg-gradient-to-br from-bad-blue to-blue-400 flex items-center justify-center shadow-lg shadow-bad-blue/20">
-              <span className="text-4xl font-bold text-white">TB</span>
-            </div>
-          </div>
-          {/* Info */}
-          <div className="text-center md:text-left">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Tracy Bailey</h2>
-            <p className="text-bad-blue font-semibold text-sm tracking-wide mb-6">
-              Business Automation Developer & AI Solutions Consultant
-            </p>
-            <p className="text-bad-gray leading-relaxed mb-6 max-w-lg">
-              Tracy consults with executives and business owners to design and build custom systems that replace manual work with automation. From single-location service companies to multi-business operators managing complex portfolios — BAD delivers software and workflows that actually work.
-            </p>
-            <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm">
-              <a href="mailto:tracy@badsaas.app" className="text-bad-gray hover:text-bad-light transition-colors">
-                tracy@badsaas.app
-              </a>
-              <a href="tel:4796706073" className="text-bad-gray hover:text-bad-light transition-colors">
-                (479) 670-6073
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── CTA ──────────────────────────────────────────────────── */}
       <section id="contact" className="border-y border-bad-border">
         <div className="max-w-7xl mx-auto px-6 py-28 lg:py-36 text-center">
