@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     'Real platforms built for real businesses. See the custom automation systems, AI tools, and workflows BAD has delivered.',
 };
 
+// Projects open to the public (direct links)
+const PUBLIC_PROJECTS = ['BAD Platform', 'expNWA'];
+
 const projects = [
   {
     name: 'AV Orchestrator',
@@ -162,18 +165,30 @@ export default function PortfolioPage() {
                   ))}
                 </div>
 
-                {/* Visit link */}
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-bad-blue group-hover:text-blue-400 transition-colors"
-                >
-                  Visit Site
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </a>
+                {/* Visit link or Request Access */}
+                {PUBLIC_PROJECTS.includes(p.name) ? (
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-bad-blue group-hover:text-blue-400 transition-colors"
+                  >
+                    Visit Site
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </a>
+                ) : (
+                  <Link
+                    href={`/portfolio/request-access?project=${encodeURIComponent(p.name)}`}
+                    className="inline-flex items-center gap-2 text-sm font-medium text-bad-blue group-hover:text-blue-400 transition-colors"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                    </svg>
+                    Request Access
+                  </Link>
+                )}
               </div>
             </div>
           ))}
