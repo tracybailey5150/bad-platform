@@ -84,7 +84,7 @@ export default function SignupPage() {
           type="text"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          placeholder="Tracy Bailey"
+          placeholder="Full Name"
           required
         />
         <Input

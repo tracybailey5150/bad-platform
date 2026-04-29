@@ -121,8 +121,7 @@ export default function TermsPage() {
           </p>
           <div className="mt-3">
             <p className="text-bad-light">BAD -- Business Automation &amp; Development</p>
-            <p>Email: <a href="mailto:tracy@badsaas.app" className="text-bad-blue hover:text-blue-400 transition-colors">tracy@badsaas.app</a></p>
-            <p>Phone: (479) 670-6073</p>
+            <p>Email: <a href="mailto:hello@badsaas.app" className="text-bad-blue hover:text-blue-400 transition-colors">hello@badsaas.app</a></p>
             <p>Website: badsaas.app</p>
           </div>
         </div>

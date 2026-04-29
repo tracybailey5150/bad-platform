@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'About | BAD — Business Automation & Development',
   description:
-    'BAD was founded to help businesses replace manual work with purpose-built systems. Meet Tracy Bailey, Business Automation Developer & AI Solutions Consultant.',
+    'BAD was founded to help businesses replace manual work with purpose-built systems. Custom automation, AI integration, and operational software.',
 };
 
 const values = [
@@ -94,36 +94,33 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Tracy Bailey */}
+      {/* The Team */}
       <section className="border-y border-bad-border bg-bad-card/30">
         <div className="max-w-7xl mx-auto px-6 py-24">
           <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-16">
             <div className="flex-shrink-0">
               <div className="w-40 h-40 rounded-full bg-gradient-to-br from-bad-blue to-blue-400 flex items-center justify-center shadow-lg shadow-bad-blue/20">
-                <span className="text-5xl font-bold text-white">TB</span>
+                <span className="text-4xl font-bold text-white">BAD</span>
               </div>
             </div>
             <div className="text-center md:text-left">
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Tracy Bailey</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Our Team</h2>
               <p className="text-bad-blue font-semibold text-sm tracking-wide mb-6">
-                Business Automation Developer &amp; AI Solutions Consultant
+                Business Automation &amp; Development
               </p>
               <p className="text-bad-gray leading-relaxed mb-4">
-                Tracy consults with executives and business owners to design and build custom systems that
+                BAD consults with executives and business owners to design and build custom systems that
                 replace manual work with automation. From single-location service companies to multi-business
-                operators managing complex portfolios -- BAD delivers software and workflows that actually work.
+                operators managing complex portfolios -- we deliver software and workflows that actually work.
               </p>
               <p className="text-bad-gray leading-relaxed mb-6">
-                With experience building 12+ production platforms across industries including field operations,
-                AV technology, music licensing, digital signage, and AI-powered lead automation, Tracy brings
+                With 12+ production platforms shipped across industries including field operations,
+                AV technology, music licensing, digital signage, and AI-powered lead automation, our team brings
                 both technical depth and business understanding to every engagement.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm">
-                <a href="mailto:tracy@badsaas.app" className="text-bad-blue hover:text-blue-400 transition-colors">
-                  tracy@badsaas.app
-                </a>
-                <a href="tel:4796706073" className="text-bad-gray hover:text-bad-light transition-colors">
-                  (479) 670-6073
+                <a href="mailto:hello@badsaas.app" className="text-bad-blue hover:text-blue-400 transition-colors">
+                  hello@badsaas.app
                 </a>
               </div>
             </div>
