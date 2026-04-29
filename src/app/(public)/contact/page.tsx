@@ -217,8 +217,21 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-bad-light">Email</p>
-                    <a href="mailto:hello@badsaas.app" className="text-sm text-bad-blue hover:text-blue-400 transition-colors">
-                      hello@badsaas.app
+                    <a href="mailto:tracy@badsaas.app" className="text-sm text-bad-blue hover:text-blue-400 transition-colors">
+                      tracy@badsaas.app
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-bad-blue/10 text-bad-blue flex-shrink-0">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-bad-light">Phone</p>
+                    <a href="tel:4796706073" className="text-sm text-bad-gray hover:text-bad-light transition-colors">
+                      (479) 670-6073
                     </a>
                   </div>
                 </div>
@@ -245,7 +258,7 @@ export default function ContactPage() {
                 how to fix it. No pitch deck. No commitment.
               </p>
               <a
-                href="mailto:hello@badsaas.app?subject=Discovery Call Request"
+                href="mailto:tracy@badsaas.app?subject=Discovery Call Request"
                 className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold bg-bad-blue hover:bg-bad-blue/90 text-white rounded-lg transition-colors w-full justify-center"
               >
                 Schedule a Call
