@@ -119,8 +119,8 @@ export default function AboutPage() {
                 both technical depth and business understanding to every engagement.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm">
-                <a href="mailto:hello@badsaas.app" className="text-bad-blue hover:text-blue-400 transition-colors">
-                  hello@badsaas.app
+                <a href="mailto:tracy@badsaas.app" className="text-bad-blue hover:text-blue-400 transition-colors">
+                  tracy@badsaas.app
                 </a>
               </div>
             </div>
