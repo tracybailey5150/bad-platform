@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 // Projects open to the public (direct links)
-const PUBLIC_PROJECTS = ['BAD Platform', 'expNWA'];
+const PUBLIC_PROJECTS = ['BAD Platform', 'expNWA', 'Radio Station Builder', 'Image Studio', 'Video Studio', 'Hook Machine', 'Lyric Video Builder'];
 
 const projects = [
   {
@@ -65,6 +65,46 @@ const projects = [
     url: 'https://hookvault.app',
     tag: 'Creative Platform',
     stack: ['Next.js 14', 'Supabase', 'Stripe', 'ElevenLabs', 'OpenAI'],
+    logo: '/portfolio/hookvault.png',
+  },
+  {
+    name: 'Radio Station Builder',
+    description: 'AI-powered internet radio platform. 26+ DJ voices, per-artist stations, drag-and-drop playlists, announcements with auto-TTS, ad slot placement, and mobile responsive player. Available as standalone module.',
+    url: 'https://hookvault.app/tools/radio-station',
+    tag: 'Creative Module',
+    stack: ['Next.js 14', 'ElevenLabs', 'Supabase', 'R2', 'Tailwind'],
+    logo: '/portfolio/hookvault.png',
+  },
+  {
+    name: 'Image Studio',
+    description: 'AI image generation and management platform. DALL-E 3 with Standard/HD/Max quality tiers, 4K upscaling, folder organization, gallery view, and drag-drop uploads. Embeddable module.',
+    url: 'https://hookvault.app/tools/image-studio',
+    tag: 'Creative Module',
+    stack: ['Next.js 14', 'OpenAI DALL-E 3', 'FAL.AI', 'Supabase', 'R2'],
+    logo: '/portfolio/hookvault.png',
+  },
+  {
+    name: 'Video Studio',
+    description: 'AI-assisted video production with storyboard builder, scene-by-scene editing, AI treatment writer, and FFmpeg MP4 rendering. Full production pipeline in the browser.',
+    url: 'https://hookvault.app/tools/video-studio',
+    tag: 'Creative Module',
+    stack: ['Next.js 14', 'OpenAI', 'FFmpeg', 'Runway', 'FAL'],
+    logo: '/portfolio/hookvault.png',
+  },
+  {
+    name: 'Hook Machine',
+    description: 'Audio hook extraction tool that analyzes tracks to identify the catchiest melodic sections and generates MP3/MP4 exports with AI-generated cover visuals for marketing.',
+    url: 'https://hookvault.app/tools/hook-machine',
+    tag: 'Creative Module',
+    stack: ['Next.js 14', 'OpenAI', 'FFmpeg', 'Supabase', 'R2'],
+    logo: '/portfolio/hookvault.png',
+  },
+  {
+    name: 'Lyric Video Builder',
+    description: 'Turn lyrics into professional videos. Sync lyrics to audio, generate AI backgrounds per section, control timing, and export as branded MP4 video.',
+    url: 'https://hookvault.app/tools/lyric-video',
+    tag: 'Creative Module',
+    stack: ['Next.js 14', 'OpenAI DALL-E 3', 'FFmpeg', 'Supabase', 'R2'],
     logo: '/portfolio/hookvault.png',
   },
   {
